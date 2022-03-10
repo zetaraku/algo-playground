@@ -59,7 +59,7 @@ function* computeLPSTable() {
 
   if (pattern.value.length === 0) {
     endCurrentProcess();
-    return 'Finished (pattern is empty)';
+    return 'Finished (You can Match Text now!)';
   }
 
   yield 'set lps[0] = 0;';
@@ -102,7 +102,7 @@ function* computeLPSTable() {
   }
 
   endCurrentProcess();
-  return 'Finished';
+  return 'Finished (You can Match Text now!)';
 }
 
 function* matchText() {
