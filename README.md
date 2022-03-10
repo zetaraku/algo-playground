@@ -1,29 +1,13 @@
-# Nuxt 3 Minimal Starter
+# Algo Playground
 
-We recommend to look at the [documentation](https://v3.nuxtjs.org).
+🎡 Play with algorithm and watch it run step by step. 😀
 
-## Setup
+This project is built with [Nuxt3](https://v3.nuxtjs.org) and [UnoCSS](https://github.com/unocss/unocss).
 
-Make sure to install the dependencies
+## Live Demo
 
-```bash
-yarn install
-```
+<https://algo-playground.netlify.app/>
 
-## Development
+## Implemented Algorithms
 
-Start the development server on http://localhost:3000
-
-```bash
-yarn dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-yarn build
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).
+- [Knuth–Morris–Pratt algorithm](https://algo-playground.netlify.app/alg/kmp)
