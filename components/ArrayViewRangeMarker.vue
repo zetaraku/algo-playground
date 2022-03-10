@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
-  begin: number,
-  end: number,
+  beginIndex: number,
+  endIndex: number,
 }>();
 </script>
 
@@ -13,8 +13,8 @@ const props = defineProps<{
       inline-flex justify-center items-center
     "
     :style="{
-      width: `${Math.max(0, (-4) + 4 * (15 + 1) * (end - begin))}px`,
-      transform: `translateX(${4 * (15 + 1) * begin}px)`,
+      width: `${Math.max(0, (-4) + 4 * (15 + 1) * (endIndex - beginIndex))}px`,
+      transform: `translateX(${4 * (15 + 1) * beginIndex}px)`,
     }"
   >
     <slot>
