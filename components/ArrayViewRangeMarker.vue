@@ -12,7 +12,7 @@ const props = defineProps<{
       transition-all
     "
     :style="{
-      width: `${(-4) + 4 * (15 + 1) * (end - begin)}px`,
+      width: `${Math.max(0, (-4) + 4 * (15 + 1) * (end - begin))}px`,
       transform: `translateX(${4 * (15 + 1) * begin}px)`,
     }"
   />
