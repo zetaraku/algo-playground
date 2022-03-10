@@ -165,12 +165,10 @@ onMounted(() => {
     <h1>
       Knuth–Morris–Pratt algorithm
       <a
-        class="text-sm"
+        class="text-sm mx-1"
         href="https://github.com/zetaraku/leetcode/blob/master/28-implement-strstr.cpp"
         target="_blank"
-      >
-        C++ Implementation
-      </a>
+      ><div class="inline-block align-middle i-mdi:code-tags mr-0.5" />Implementation</a>
     </h1>
 
     <!-- Pattern and Text Inputs -->
