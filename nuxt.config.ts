@@ -6,4 +6,7 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
+  buildModules: [
+    '@unocss/nuxt',
+  ],
 });
