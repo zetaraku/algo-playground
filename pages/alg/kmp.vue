@@ -158,8 +158,8 @@ function* matchText() {
 }
 
 onMounted(() => {
-  patternInput.value = 'AAACAAAA';
-  textInput.value = 'AAAAACAAACAAAAC';
+  patternInput.value = '😀😀😀🎡😀😀😀😀';
+  textInput.value = '😀😀😀😀😀🎡😀😀😀🎡😀😀😀😀🎡';
 });
 </script>
 
