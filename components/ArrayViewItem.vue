@@ -20,7 +20,7 @@ const props = defineProps<{
     </span>
     <span
       v-else
-      class="text-4xl text-gray-500"
+      class="text-4xl text-gray-400"
     >
       {{ '-' }}
     </span>
