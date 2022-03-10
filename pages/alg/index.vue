@@ -3,7 +3,7 @@ const categories = [
   {
     title: 'Strings',
     pages: [
-      { title: 'KMP algorithm', to: '/alg/kmp' },
+      { title: 'Knuth–Morris–Pratt algorithm', to: '/alg/kmp' },
     ],
   },
 ];

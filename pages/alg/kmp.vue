@@ -163,7 +163,7 @@ onMounted(() => {
 <template>
   <div class="font-sans">
     <h1>
-      KMP Algorithm
+      Knuth–Morris–Pratt algorithm
       <a
         class="text-sm"
         href="https://github.com/zetaraku/leetcode/blob/master/28-implement-strstr.cpp"
