@@ -166,6 +166,11 @@ onMounted(() => {
       Knuth–Morris–Pratt algorithm
       <a
         class="text-sm mx-1"
+        href="https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm"
+        target="_blank"
+      ><div class="inline-block align-middle i-mdi:wikipedia mr-0.5" />Wikipedia</a>
+      <a
+        class="text-sm mx-1"
         href="https://github.com/zetaraku/leetcode/blob/master/28-implement-strstr.cpp"
         target="_blank"
       ><div class="inline-block align-middle i-mdi:code-tags mr-0.5" />Implementation</a>
