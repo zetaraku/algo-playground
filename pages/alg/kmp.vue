@@ -1,6 +1,9 @@
 <script setup lang="ts">
-const pattern = ref('');
-const text = ref('');
+const patternInput = ref('');
+const textInput = ref('');
+
+const pattern = computed(() => [...patternInput.value]);
+const text = computed(() => [...textInput.value]);
 
 const stage = ref<'preprocessing' | 'matching'>('preprocessing');
 const currentProcess = ref<Generator<string, string> | null>(null);
@@ -155,8 +158,8 @@ function* matchText() {
 }
 
 onMounted(() => {
-  pattern.value = 'AAACAAAA';
-  text.value = 'AAAAACAAACAAAAC';
+  patternInput.value = 'AAACAAAA';
+  textInput.value = 'AAAAACAAACAAAAC';
 });
 </script>
 
@@ -181,7 +184,7 @@ onMounted(() => {
       <label class="block mb-2">
         <span class="block text-xl">Pattern</span>
         <input
-          v-model="pattern"
+          v-model="patternInput"
           type="text"
           class="w-160 rounded px-3 py-2 text-4xl font-sans"
         >
@@ -189,7 +192,7 @@ onMounted(() => {
       <label class="block mb-2">
         <span class="block text-xl">Text</span>
         <input
-          v-model="text"
+          v-model="textInput"
           type="text"
           class="w-160 rounded px-3 py-2 text-4xl font-sans"
         >
@@ -230,7 +233,7 @@ onMounted(() => {
     <!-- Pattern String -->
     <div class="mb-15">
       <label class="text-lg font-mono">pattern</label>
-      <ArrayView :data="[...pattern]">
+      <ArrayView :data="pattern">
         <!-- Matched Range -->
         <ArrayViewRangeMarker
           class="border-lime-400 bg-lime-400/50 border-r-0"
@@ -267,7 +270,7 @@ onMounted(() => {
       <label class="text-lg font-mono">
         {{ stage === 'preprocessing' ? 'pattern' : 'text' }}
       </label>
-      <ArrayView :data="stage === 'preprocessing' ? [...pattern] : [...text]">
+      <ArrayView :data="stage === 'preprocessing' ? pattern : text">
         <!-- Matched Range -->
         <ArrayViewRangeMarker
           class="border-lime-400 bg-lime-400/50 border-r-0"
