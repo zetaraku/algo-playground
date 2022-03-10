@@ -186,7 +186,7 @@ onMounted(() => {
         <input
           v-model="patternInput"
           type="text"
-          class="w-160 rounded px-3 py-2 text-4xl font-sans"
+          class="w-200 rounded px-3 py-2 text-4xl font-sans"
         >
       </label>
       <label class="block mb-2">
@@ -194,7 +194,7 @@ onMounted(() => {
         <input
           v-model="textInput"
           type="text"
-          class="w-160 rounded px-3 py-2 text-4xl font-sans"
+          class="w-200 rounded px-3 py-2 text-4xl font-sans"
         >
       </label>
     </div>
