@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full flex flex-col justify-center items-center">
+  <div class="h-screen flex flex-col justify-center items-center">
     <div class="i-mdi:ferris-wheel text-60 text-teal-600 animate-bounce" />
 
     <h1 class="text-10 mb-3">
