@@ -5,7 +5,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="relative flex flex-wrap pl-1">
+  <div class="relative whitespace-nowrap pl-1">
     <ArrayViewItem
       v-for="(item, i) in data"
       :key="i"
