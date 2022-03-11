@@ -171,16 +171,18 @@ onMounted(() => {
   <div class="font-sans">
     <h1>
       Knuth–Morris–Pratt algorithm
-      <a
-        class="text-sm mx-1"
-        href="https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm"
-        target="_blank"
-      ><div class="inline-block align-middle i-mdi:wikipedia mr-0.5" />Wikipedia</a>
-      <a
-        class="text-sm mx-1"
-        href="https://github.com/zetaraku/leetcode/blob/master/28-implement-strstr.cpp"
-        target="_blank"
-      ><div class="inline-block align-middle i-mdi:code-tags mr-0.5" />Implementation</a>
+      <div class="inline-block whitespace-nowrap">
+        <a
+          class="text-sm mx-1"
+          href="https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm"
+          target="_blank"
+        ><div class="inline-block align-middle i-mdi:wikipedia mr-0.5" />Wikipedia</a>
+        <a
+          class="text-sm mx-1"
+          href="https://github.com/zetaraku/leetcode/blob/master/28-implement-strstr.cpp"
+          target="_blank"
+        ><div class="inline-block align-middle i-mdi:code-tags mr-0.5" />Implementation</a>
+      </div>
     </h1>
 
     <!-- Pattern and Text Inputs -->
@@ -204,16 +206,16 @@ onMounted(() => {
     </div>
 
     <!-- Buttons -->
-    <div class="flex flex-gap-2 my-5">
+    <div class="my-5 whitespace-nowrap">
       <button
-        class="px-3 py-2 rounded text-4xl"
+        class="px-3 py-2 m-1 rounded text-4xl"
         :class="{ 'text-red-500': currentProcess !== null && stage === 'preprocessing' }"
         @click="beginProcess(computeLPSTable);"
       >
         Compute LPS Table
       </button>
       <button
-        class="px-3 py-2 rounded text-4xl"
+        class="px-3 py-2 m-1 rounded text-4xl"
         :class="{ 'text-red-500': currentProcess !== null && stage === 'matching' }"
         :disabled="!lpsFinished"
         @click="beginProcess(matchText);"
@@ -221,7 +223,7 @@ onMounted(() => {
         Match Text
       </button>
       <button
-        class="px-3 py-2 rounded text-4xl"
+        class="px-3 py-2 m-1 rounded text-4xl"
         :disabled="currentProcess === null"
         @click="nextStep();"
       >
