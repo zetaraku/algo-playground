@@ -9,7 +9,7 @@ const props = defineProps<{
     class="
       w-15 h-15 border-4 -ml-1
       text-4xl border-gray-300
-      inline-flex justify-center items-center
+      inline-flex justify-center items-center whitespace-nowrap
     "
   >
     <span
