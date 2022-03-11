@@ -12,7 +12,7 @@ const props = defineProps<{
       :item="item"
     />
     <ArrayViewItem
-      class="text-red-500"
+      class="text-red-500 bg-gray-300"
       :item="'$'"
     />
     <slot>
