@@ -280,11 +280,11 @@ onMounted(() => {
     <!-- Pattern/Text String -->
     <div>
       <label class="text-lg font-mono">
-        {{ stage === 'preprocessing' ? 'pattern' : 'text' }}
+        {{ stage !== 'matching' ? 'pattern' : 'text' }}
       </label>
       <ArrayView
         class="pb-15"
-        :data="stage === 'preprocessing' ? pattern : text"
+        :data="stage !== 'matching' ? pattern : text"
       >
         <!-- Matched Range -->
         <ArrayViewRangeMarker
