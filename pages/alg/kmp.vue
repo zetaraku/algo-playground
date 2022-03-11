@@ -261,7 +261,11 @@ onMounted(() => {
           v-if="kIndex !== null"
           class="border-amber-400 bg-amber-400/50"
           :index="kIndex"
-        />
+        >
+          <span class="relative -bottom-15 text-xl fw-bold text-amber-400">
+            i-1 = {{ iIndex - 1 }}
+          </span>
+        </ArrayViewIndexMarker>
       </ArrayView>
     </div>
 
