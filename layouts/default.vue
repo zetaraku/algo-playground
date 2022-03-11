@@ -1,6 +1,12 @@
 <template>
-  <div class="h-screen">
-    <nav class="flex items-center text-10 px-6 py-4 bg-teal-600">
+  <div class="relative min-h-screen">
+    <nav
+      class="
+        fixed top-0 left-0 right-0 h-20 z-999
+        flex items-center
+        text-10 px-6 py-4 bg-teal-600
+      "
+    >
       <NuxtLink
         class="text-white no-underline"
         to="/"
@@ -18,11 +24,16 @@
     </nav>
     <header />
 
-    <main class="p-6 h-full">
+    <main class="pt-20 pb-20 px-6 min-h-screen">
       <slot />
     </main>
 
-    <footer class="text-right bg-gray-100 px-2 pt-2 pb-1">
+    <footer
+      class="
+        absolute left-0 right-0 bottom-0
+        text-right px-2 pt-2 pb-1 bg-gray-100
+      "
+    >
       &copy; 2022 / made by
       <a
         class="no-underline"
