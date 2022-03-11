@@ -233,9 +233,12 @@ onMounted(() => {
     </div>
 
     <!-- Pattern String -->
-    <div class="mb-15">
+    <div>
       <label class="text-lg font-mono">pattern</label>
-      <ArrayView :data="pattern">
+      <ArrayView
+        class="pb-15"
+        :data="pattern"
+      >
         <!-- Matched Range -->
         <ArrayViewRangeMarker
           class="border-lime-400 bg-lime-400/50 border-r-0"
@@ -255,9 +258,12 @@ onMounted(() => {
     </div>
 
     <!-- LPS Table -->
-    <div class="mb-15">
+    <div>
       <label class="text-lg font-mono">lps</label>
-      <ArrayView :data="lps">
+      <ArrayView
+        class="pb-15"
+        :data="lps"
+      >
         <!-- Current k Index (lookup indicator) -->
         <ArrayViewIndexMarker
           v-if="kIndex !== null"
@@ -272,11 +278,14 @@ onMounted(() => {
     </div>
 
     <!-- Pattern/Text String -->
-    <div class="mb-15">
+    <div>
       <label class="text-lg font-mono">
         {{ stage === 'preprocessing' ? 'pattern' : 'text' }}
       </label>
-      <ArrayView :data="stage === 'preprocessing' ? pattern : text">
+      <ArrayView
+        class="pb-15"
+        :data="stage === 'preprocessing' ? pattern : text"
+      >
         <!-- Matched Range -->
         <ArrayViewRangeMarker
           class="border-lime-400 bg-lime-400/50 border-r-0"
