@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  title: 'Algorithm',
+});
+
 const categories = [
   {
     title: 'Strings',

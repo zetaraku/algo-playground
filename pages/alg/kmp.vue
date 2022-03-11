@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  title: 'Knuth–Morris–Pratt algorithm',
+});
+
 const patternInput = ref('');
 const textInput = ref('');
 
