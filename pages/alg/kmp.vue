@@ -203,12 +203,14 @@ onMounted(() => {
     <div class="flex flex-gap-2 my-5">
       <button
         class="px-3 py-2 rounded text-4xl"
+        :class="{ 'text-red-500': currentProcess !== null && stage === 'preprocessing' }"
         @click="beginProcess(computeLPSTable);"
       >
         Compute LPS Table
       </button>
       <button
         class="px-3 py-2 rounded text-4xl"
+        :class="{ 'text-red-500': currentProcess !== null && stage === 'matching' }"
         :disabled="!lpsFinished"
         @click="beginProcess(matchText);"
       >
