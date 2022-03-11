@@ -9,6 +9,9 @@ export default defineNuxtConfig({
   buildModules: [
     '@unocss/nuxt',
   ],
+  css: [
+    '@unocss/reset/sanitize/sanitize.css',
+  ],
   unocss: {
     autoImport: true, // inject `uno.css`
     preflight: false, // inject `@unocss/reset/tailwind.css`
