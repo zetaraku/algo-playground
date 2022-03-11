@@ -168,21 +168,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="font-sans">
+  <div class="font-sans whitespace-nowrap">
     <h1>
       Knuth–Morris–Pratt algorithm
-      <div class="inline-block whitespace-nowrap">
-        <a
-          class="text-sm mx-1"
-          href="https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm"
-          target="_blank"
-        ><div class="inline-block align-middle i-mdi:wikipedia mr-0.5" />Wikipedia</a>
-        <a
-          class="text-sm mx-1"
-          href="https://github.com/zetaraku/leetcode/blob/master/28-implement-strstr.cpp"
-          target="_blank"
-        ><div class="inline-block align-middle i-mdi:code-tags mr-0.5" />Implementation</a>
-      </div>
+      <a
+        class="text-sm mx-1"
+        href="https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm"
+        target="_blank"
+      ><div class="inline-block align-middle i-mdi:wikipedia mr-0.5" />Wikipedia</a>
+      <a
+        class="text-sm mx-1"
+        href="https://github.com/zetaraku/leetcode/blob/master/28-implement-strstr.cpp"
+        target="_blank"
+      ><div class="inline-block align-middle i-mdi:code-tags mr-0.5" />Implementation</a>
     </h1>
 
     <!-- Pattern and Text Inputs -->
@@ -206,7 +204,7 @@ onMounted(() => {
     </div>
 
     <!-- Buttons -->
-    <div class="my-5 whitespace-nowrap">
+    <div class="my-5">
       <button
         class="px-3 py-2 m-1 rounded text-4xl"
         :class="{ 'text-red-500': currentProcess !== null && stage === 'preprocessing' }"
