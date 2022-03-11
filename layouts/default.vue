@@ -42,7 +42,7 @@ useMeta({
 
     <footer
       class="
-        absolute left-0 right-0 bottom-0
+        fixed left-0 right-0 bottom-0
         text-right px-2 pt-2 pb-1 bg-gray-100
       "
     >
