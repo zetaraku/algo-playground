@@ -13,8 +13,8 @@ const props = defineProps<{
       inline-flex justify-center items-center
     "
     :style="{
-      width: `${Math.max(0, (-4) + 4 * (15 + 1) * (endIndex - beginIndex))}px`,
-      transform: `translateX(${4 * (15 + 1) * beginIndex}px)`,
+      width: `${Math.max(0, 4 + 4 * (15 - 1) * (endIndex - beginIndex))}px`,
+      transform: `translateX(${4 * (15 - 1) * beginIndex}px)`,
     }"
   >
     <slot>
