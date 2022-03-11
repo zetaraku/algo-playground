@@ -1,3 +1,15 @@
+<script setup lang="ts">
+const siteTitle = 'Algo Playground';
+
+const route = useRoute();
+
+useMeta({
+  title: computed(
+    () => (route.meta.title ? `${route.meta.title} | ${siteTitle}` : siteTitle),
+  ),
+});
+</script>
+
 <template>
   <div class="relative min-h-screen">
     <nav
