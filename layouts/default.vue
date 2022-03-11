@@ -24,7 +24,7 @@ useMeta({
         to="/"
       >
         <div class="inline-block text-white align-middle i-mdi:ferris-wheel mr-4" />
-        <span>Algo Playground</span>
+        <span class="text-6 sm:text-10">Algo Playground</span>
       </NuxtLink>
       <div class="m-a" />
       <a
