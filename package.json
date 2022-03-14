@@ -14,7 +14,8 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-vue": "^8.5.0",
-    "nuxt3": "latest"
+    "nuxt3": "latest",
+    "sass": "^1.49.9"
   },
   "dependencies": {
     "bootstrap": "^5.1.3"
