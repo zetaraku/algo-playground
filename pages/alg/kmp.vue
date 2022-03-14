@@ -34,6 +34,15 @@ function nextStep() {
   if (currentProcess.value === null) return;
   infoMessage.value = currentProcess.value.next().value;
 }
+async function autoSkip(delay: number) {
+  while (currentProcess.value && !currentProcess.value.next().done) {
+    nextStep();
+    // eslint-disable-next-line no-await-in-loop
+    await new Promise((resolve) => {
+      setTimeout(resolve, delay);
+    });
+  }
+}
 function beginProcess(start: () => Generator<string, string>) {
   currentProcess.value = start();
   nextStep();
@@ -225,7 +234,21 @@ onMounted(() => {
         :disabled="currentProcess === null"
         @click="nextStep();"
       >
-        NEXT
+        NEXT &gt;
+      </button>
+      <button
+        class="px-3 py-2 m-1 rounded text-4xl"
+        :disabled="currentProcess === null"
+        @click="autoSkip(500);"
+      >
+        AUTO &gt;&gt;
+      </button>
+      <button
+        class="px-3 py-2 m-1 rounded text-4xl"
+        :disabled="currentProcess === null"
+        @click="autoSkip(0);"
+      >
+        SKIP &gt;&gt;|
       </button>
     </div>
 
