@@ -18,6 +18,8 @@
     "sass": "^1.49.9"
   },
   "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^6.5.95",
     "bootstrap": "^5.1.3"
   }
 }
