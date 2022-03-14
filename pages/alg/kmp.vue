@@ -24,6 +24,16 @@ const iIndex = ref<number>(0);
 const jIndex = ref<number>(0);
 const kIndex = ref<number | null>(null);
 
+const currentIndexesMatched = computed(() => {
+  if (stage.value === 'preprocessing') {
+    return pattern.value[iIndex.value] === pattern.value[jIndex.value];
+  }
+  if (stage.value === 'matching') {
+    return pattern.value[iIndex.value] === text.value[jIndex.value];
+  }
+  return false;
+});
+
 function resetPointers() {
   iIndex.value = 0;
   jIndex.value = 0;
@@ -274,7 +284,11 @@ onMounted(() => {
         />
         <!-- Current i Index -->
         <ArrayViewIndexMarker
-          class="border-blue-500 bg-blue-500/50"
+          :class="
+            currentIndexesMatched ?
+              'border-blue-500 bg-blue-500/50' :
+              'border-red-500 bg-red-500/50'
+          "
           :index="iIndex"
         >
           <span class="relative -bottom-15 text-xl fw-bold text-blue-500">
@@ -320,7 +334,11 @@ onMounted(() => {
 
         <!-- Current j Index -->
         <ArrayViewIndexMarker
-          class="border-blue-500 bg-blue-500/50"
+          :class="
+            currentIndexesMatched ?
+              'border-blue-500 bg-blue-500/50' :
+              'border-red-500 bg-red-500/50'
+          "
           :index="jIndex"
         >
           <span class="relative -bottom-15 text-xl fw-bold text-blue-500">
@@ -357,7 +375,11 @@ onMounted(() => {
 
         <!-- Current j Index -->
         <ArrayViewIndexMarker
-          class="border-blue-500 bg-blue-500/50"
+          :class="
+            currentIndexesMatched ?
+              'border-blue-500 bg-blue-500/50' :
+              'border-red-500 bg-red-500/50'
+          "
           :index="jIndex"
         >
           <span class="relative -bottom-15 text-xl fw-bold text-blue-500">
