@@ -304,11 +304,35 @@ onMounted(() => {
       </ArrayView>
     </div>
 
-    <!-- Pattern/Text String -->
-    <div>
-      <label class="text-lg font-mono">
-        {{ stage !== 'matching' ? 'pattern' : 'text' }}
-      </label>
+    <!-- Pattern String -->
+    <div v-if="stage === 'preprocessing'">
+      <label class="text-lg font-mono">pattern</label>
+      <ArrayView
+        class="pb-15"
+        :data="pattern"
+      >
+        <!-- Matched Range -->
+        <ArrayViewRangeMarker
+          class="border-lime-400 bg-lime-400/50 border-r-0"
+          :begin-index="jIndex - iIndex"
+          :end-index="jIndex"
+        />
+
+        <!-- Current j Index -->
+        <ArrayViewIndexMarker
+          class="border-blue-500 bg-blue-500/50"
+          :index="jIndex"
+        >
+          <span class="relative -bottom-15 text-xl fw-bold text-blue-500">
+            j = {{ jIndex }}
+          </span>
+        </ArrayViewIndexMarker>
+      </ArrayView>
+    </div>
+
+    <!-- Text String -->
+    <div v-if="stage === 'matching'">
+      <label class="text-lg font-mono">text</label>
       <ArrayView
         class="pb-15"
         :data="stage !== 'matching' ? pattern : text"
@@ -322,7 +346,7 @@ onMounted(() => {
 
         <!-- Current j-i Index -->
         <ArrayViewIndexMarker
-          v-if="stage === 'matching' && iIndex > 0"
+          v-if="iIndex > 0"
           class="border-transparent"
           :index="jIndex - iIndex"
         >
