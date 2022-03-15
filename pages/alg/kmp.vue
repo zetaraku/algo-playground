@@ -16,7 +16,7 @@ const stage = ref<'preprocessing' | 'matching'>('preprocessing');
 const currentProcess = ref<Generator<string, string> | null>(null);
 const infoMessage = ref<string | null>(null);
 const autoPlaying = ref(false);
-const autoPlayDelay = ref(500);
+const autoPlayDelay = ref(250);
 
 const lps = ref<(number | undefined)[]>([]);
 const lpsFinished = computed(() => !lps.value.includes(undefined));
@@ -312,7 +312,7 @@ onMounted(() => {
             v-model.number="autoPlayDelay"
             type="number"
             min="0"
-            step="100"
+            step="50"
             class="form-control form-control-lg"
             style="width: 10em;"
           >
