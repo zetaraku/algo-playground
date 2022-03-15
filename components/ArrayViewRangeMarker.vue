@@ -8,9 +8,13 @@ const props = defineProps<{
 <template>
   <div
     class="
-      absolute w-15 h-15 border-4
-      transition-all duration-300
-      inline-flex justify-center items-center whitespace-nowrap
+      position-absolute
+      d-inline-flex justify-content-center align-items-center
+    "
+    style="
+      height: 60px;
+      border: 4px solid;
+      transition: all cubic-bezier(0.4, 0, 0.2, 1) 300ms;
     "
     :style="{
       width: `${Math.max(0, 4 + 4 * (15 - 1) * (endIndex - beginIndex))}px`,

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Algorithm',
+  title: 'Algorithms',
 });
 
 const categories = [
@@ -15,8 +15,10 @@ const categories = [
 
 <template>
   <div>
-    <h1>Algorithm</h1>
-    <ul class="text-6">
+    <h2 class="mb-3">
+      Algorithms
+    </h2>
+    <ul>
       <li
         v-for="(category, i) in categories"
         :key="i"

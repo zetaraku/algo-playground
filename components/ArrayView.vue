@@ -5,14 +5,17 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="relative whitespace-nowrap pl-1">
+  <div
+    class="position-relative"
+    style="padding-left: 4px;"
+  >
     <ArrayViewItem
       v-for="(item, i) in data"
       :key="i"
       :item="item"
     />
     <ArrayViewItem
-      class="text-red-500 bg-gray-300"
+      style="color: red; background-color: lightgray;"
       :item="'$'"
     />
     <slot>

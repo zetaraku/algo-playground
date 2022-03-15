@@ -6,21 +6,23 @@ const props = defineProps<{
 
 <template>
   <div
-    class="
-      w-15 h-15 border-4 -ml-1
-      text-4xl border-gray-300
-      inline-flex justify-center items-center whitespace-nowrap
+    class="d-inline-flex justify-content-center align-items-center"
+    style="
+      width: 60px;
+      height: 60px;
+      border: 4px solid lightgray;
+      margin-left: -4px;
+      font-size: 36px;
     "
   >
     <span
       v-if="item != null"
-      class="text-4xl"
     >
       {{ item }}
     </span>
     <span
       v-else
-      class="text-4xl text-gray-400"
+      style="color: darkgray;"
     >
       {{ '-' }}
     </span>

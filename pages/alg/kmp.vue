@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import SvgIcon from '@jamescoyle/vue-icon';
+import { mdiWikipedia, mdiCodeTags, mdiDotsHorizontal } from '@mdi/js';
+
 definePageMeta({
   title: 'Knuth–Morris–Pratt algorithm',
 });
@@ -12,6 +15,8 @@ const text = computed(() => [...textInput.value]);
 const stage = ref<'preprocessing' | 'matching'>('preprocessing');
 const currentProcess = ref<Generator<string, string> | null>(null);
 const infoMessage = ref<string | null>(null);
+const autoPlaying = ref(false);
+const autoPlayDelay = ref(500);
 
 const lps = ref<(number | undefined)[]>([]);
 const lpsFinished = computed(() => !lps.value.includes(undefined));
@@ -44,13 +49,22 @@ function nextStep() {
   if (currentProcess.value === null) return;
   infoMessage.value = currentProcess.value.next().value;
 }
-async function autoSkip(delay: number) {
+async function autoPlay() {
+  if (autoPlaying.value) return;
+
+  autoPlaying.value = true;
   while (currentProcess.value && !currentProcess.value.next().done) {
     nextStep();
     // eslint-disable-next-line no-await-in-loop
     await new Promise((resolve) => {
-      setTimeout(resolve, delay);
+      setTimeout(resolve, autoPlayDelay.value);
     });
+  }
+  autoPlaying.value = false;
+}
+async function skipAll() {
+  while (currentProcess.value && !currentProcess.value.next().done) {
+    nextStep();
   }
 }
 function beginProcess(start: () => Generator<string, string>) {
@@ -187,111 +201,172 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="font-sans whitespace-nowrap">
-    <h1>
-      Knuth–Morris–Pratt algorithm
-      <a
-        class="text-sm mx-1"
-        href="https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm"
-        target="_blank"
-      ><div class="inline-block align-middle i-mdi:wikipedia mr-0.5" />Wikipedia</a>
-      <a
-        class="text-sm mx-1"
-        href="https://github.com/zetaraku/leetcode/blob/master/28-implement-strstr.cpp"
-        target="_blank"
-      ><div class="inline-block align-middle i-mdi:code-tags mr-0.5" />Implementation</a>
-    </h1>
+  <div class="font-sans text-nowrap">
+    <!-- Headings -->
+    <div class="mb-4">
+      <h2 class="d-inline-block me-2">
+        Knuth–Morris–Pratt algorithm
+      </h2>
+      <div class="d-inline-block">
+        <a
+          class="me-1"
+          href="https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm"
+          target="_blank"
+        ><SvgIcon
+          class="d-inline-block align-middle me-1"
+          type="mdi"
+          :path="mdiWikipedia"
+        />Wikipedia</a>
+        <a
+          class="me-1"
+          href="https://github.com/zetaraku/leetcode/blob/master/28-implement-strstr.cpp"
+          target="_blank"
+        ><SvgIcon
+          class="d-inline-block align-middle me-1"
+          type="mdi"
+          :path="mdiCodeTags"
+        />Implementation</a>
+      </div>
+    </div>
 
     <!-- Pattern and Text Inputs -->
     <div>
-      <label class="block mb-2">
-        <span class="block text-xl">Pattern</span>
+      <label class="d-block mb-3">
+        <span class="form-label">Pattern</span>
         <input
           v-model="patternInput"
           type="text"
-          class="w-200 rounded px-3 py-2 text-4xl font-sans"
+          class="form-control form-control-lg"
         >
       </label>
-      <label class="block mb-2">
-        <span class="block text-xl">Text</span>
+      <label class="d-block mb-3">
+        <span class="form-label">Text</span>
         <input
           v-model="textInput"
           type="text"
-          class="w-200 rounded px-3 py-2 text-4xl font-sans"
+          class="form-control form-control-lg"
         >
       </label>
     </div>
 
     <!-- Buttons -->
-    <div class="my-5">
-      <button
-        class="px-3 py-2 m-1 rounded text-4xl"
-        :class="{ 'text-red-500': currentProcess !== null && stage === 'preprocessing' }"
-        @click="beginProcess(computeLPSTable);"
+    <div class="my-4">
+      <div class="row row-cols-auto g-2 align-items-center my-1">
+        <div class="col">
+          <button
+            class="btn btn-lg"
+            :class="[
+              currentProcess !== null && stage === 'preprocessing' ?
+                'btn-primary' : 'btn-outline-primary'
+            ]"
+            @click="beginProcess(computeLPSTable);"
+          >
+            Compute LPS Table
+          </button>
+        </div>
+        <div class="col">
+          <button
+            class="btn btn-lg"
+            :class="[
+              currentProcess !== null && stage === 'matching' ?
+                'btn-danger' : 'btn-outline-danger'
+            ]"
+            :disabled="!lpsFinished"
+            @click="beginProcess(matchText);"
+          >
+            Match Text
+          </button>
+        </div>
+        <div class="col">
+          <button
+            class="btn btn-lg btn-outline-secondary"
+            :disabled="currentProcess === null"
+            @click="nextStep();"
+          >
+            NEXT &gt;
+          </button>
+        </div>
+        <div class="col">
+          <button
+            class="btn btn-sm btn-outline-secondary rounded-pill p-2 ms-2"
+            data-bs-toggle="collapse"
+            data-bs-target="#advancedOptions"
+          >
+            <SvgIcon
+              class="d-inline-block align-middle"
+              type="mdi"
+              :path="mdiDotsHorizontal"
+            />
+          </button>
+        </div>
+      </div>
+      <div
+        id="advancedOptions"
+        class="row row-cols-auto g-2 align-items-end my-1 collapse"
       >
-        Compute LPS Table
-      </button>
-      <button
-        class="px-3 py-2 m-1 rounded text-4xl"
-        :class="{ 'text-red-500': currentProcess !== null && stage === 'matching' }"
-        :disabled="!lpsFinished"
-        @click="beginProcess(matchText);"
-      >
-        Match Text
-      </button>
-      <button
-        class="px-3 py-2 m-1 rounded text-4xl"
-        :disabled="currentProcess === null"
-        @click="nextStep();"
-      >
-        NEXT &gt;
-      </button>
-      <button
-        class="px-3 py-2 m-1 rounded text-4xl"
-        :disabled="currentProcess === null"
-        @click="autoSkip(500);"
-      >
-        AUTO &gt;&gt;
-      </button>
-      <button
-        class="px-3 py-2 m-1 rounded text-4xl"
-        :disabled="currentProcess === null"
-        @click="autoSkip(0);"
-      >
-        SKIP &gt;&gt;|
-      </button>
+        <div class="col">
+          <label class="mb-1">
+            delay (ms):
+          </label>
+          <input
+            v-model.number="autoPlayDelay"
+            type="number"
+            min="0"
+            step="100"
+            class="form-control form-control-lg"
+            style="width: 10em;"
+          >
+        </div>
+        <div class="col">
+          <button
+            class="btn btn-lg"
+            :class="[
+              autoPlaying ? 'btn-secondary' : 'btn-outline-secondary'
+            ]"
+            :disabled="currentProcess === null || autoPlaying"
+            @click="autoPlay();"
+          >
+            AUTO PLAY &gt;&gt;
+          </button>
+        </div>
+        <div class="col">
+          <button
+            class="btn btn-lg btn-outline-secondary"
+            :disabled="currentProcess === null"
+            @click="skipAll();"
+          >
+            SKIP &gt;&gt;|
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Explanatory Message -->
-    <div>
-      <p class="text-4xl font-mono">
+    <blockquote class="blockquote">
+      <p class="fs-3 font-monospace">
         {{ infoMessage ?? 'READY' }}
       </p>
-    </div>
+    </blockquote>
 
     <!-- Pattern String -->
     <div>
-      <label class="text-lg font-mono">pattern</label>
+      <label class="fs-5 font-monospace">pattern</label>
       <ArrayView
-        class="pb-15"
         :data="pattern"
+        style="padding-bottom: 60px;"
       >
         <!-- Matched Range -->
         <ArrayViewRangeMarker
-          class="border-lime-400 bg-lime-400/50 border-r-0"
+          class="previous-matched border-end-0"
           :begin-index="0"
           :end-index="iIndex"
         />
         <!-- Current i Index -->
         <ArrayViewIndexMarker
-          :class="
-            currentIndexesMatched ?
-              'border-blue-500 bg-blue-500/50' :
-              'border-red-500 bg-red-500/50'
-          "
+          :class="currentIndexesMatched ? 'current-matched' : 'current-mismatched'"
           :index="iIndex"
         >
-          <span class="relative -bottom-15 text-xl fw-bold text-blue-500">
+          <span class="marker-text">
             i = {{ iIndex }}
           </span>
         </ArrayViewIndexMarker>
@@ -300,18 +375,18 @@ onMounted(() => {
 
     <!-- LPS Table -->
     <div>
-      <label class="text-lg font-mono">lps</label>
+      <label class="fs-5 font-monospace">lps</label>
       <ArrayView
-        class="pb-15"
         :data="lps"
+        style="padding-bottom: 60px;"
       >
         <!-- Current k Index (lookup indicator) -->
         <ArrayViewIndexMarker
           v-if="kIndex !== null"
-          class="border-amber-400 bg-amber-400/50"
+          class="previous-matched"
           :index="kIndex"
         >
-          <span class="relative -bottom-15 text-xl fw-bold text-amber-400">
+          <span class="marker-text">
             i-1 = {{ iIndex - 1 }}
           </span>
         </ArrayViewIndexMarker>
@@ -320,28 +395,24 @@ onMounted(() => {
 
     <!-- Pattern String -->
     <div v-if="stage === 'preprocessing'">
-      <label class="text-lg font-mono">pattern</label>
+      <label class="fs-5 font-monospace">pattern</label>
       <ArrayView
-        class="pb-15"
         :data="pattern"
+        style="padding-bottom: 60px;"
       >
         <!-- Matched Range -->
         <ArrayViewRangeMarker
-          class="border-lime-400 bg-lime-400/50 border-r-0"
+          class="previous-matched border-end-0"
           :begin-index="jIndex - iIndex"
           :end-index="jIndex"
         />
 
         <!-- Current j Index -->
         <ArrayViewIndexMarker
-          :class="
-            currentIndexesMatched ?
-              'border-blue-500 bg-blue-500/50' :
-              'border-red-500 bg-red-500/50'
-          "
+          :class="currentIndexesMatched ? 'current-matched' : 'current-mismatched'"
           :index="jIndex"
         >
-          <span class="relative -bottom-15 text-xl fw-bold text-blue-500">
+          <span class="marker-text">
             j = {{ jIndex }}
           </span>
         </ArrayViewIndexMarker>
@@ -350,14 +421,14 @@ onMounted(() => {
 
     <!-- Text String -->
     <div v-if="stage === 'matching'">
-      <label class="text-lg font-mono">text</label>
+      <label class="fs-5 font-monospace">text</label>
       <ArrayView
-        class="pb-15"
         :data="stage !== 'matching' ? pattern : text"
+        style="padding-bottom: 60px;"
       >
         <!-- Matched Range -->
         <ArrayViewRangeMarker
-          class="border-lime-400 bg-lime-400/50 border-r-0"
+          class="previous-matched border-end-0"
           :begin-index="jIndex - iIndex"
           :end-index="jIndex"
         />
@@ -365,24 +436,20 @@ onMounted(() => {
         <!-- Current j-i Index -->
         <ArrayViewIndexMarker
           v-if="iIndex > 0"
-          class="border-transparent"
+          class="previous-matched no-marker"
           :index="jIndex - iIndex"
         >
-          <span class="relative -bottom-15 text-xl fw-bold text-lime-400">
+          <span class="marker-text">
             j-i = {{ jIndex - iIndex }}
           </span>
         </ArrayViewIndexMarker>
 
         <!-- Current j Index -->
         <ArrayViewIndexMarker
-          :class="
-            currentIndexesMatched ?
-              'border-blue-500 bg-blue-500/50' :
-              'border-red-500 bg-red-500/50'
-          "
+          :class="currentIndexesMatched ? 'current-matched' : 'current-mismatched'"
           :index="jIndex"
         >
-          <span class="relative -bottom-15 text-xl fw-bold text-blue-500">
+          <span class="marker-text">
             j = {{ jIndex }}
           </span>
         </ArrayViewIndexMarker>
@@ -390,3 +457,31 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.previous-matched {
+  color: rgba(163, 230, 53, 1.0);
+  border-color: rgba(163, 230, 53, 1.0);
+  background-color: rgba(163, 230, 53, 0.5);
+}
+.current-matched {
+  color: rgba(59, 130, 246, 1.0);
+  border-color: rgba(59, 130, 246, 1.0);
+  background-color: rgba(59, 130, 246, 0.5);
+}
+.current-mismatched {
+  color: rgba(239, 68, 68, 1.0);
+  border-color: rgba(239, 68, 68, 1.0);
+  background-color: rgba(239, 68, 68, 0.5);
+}
+.marker-text {
+  position: relative;
+  bottom: -60px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.no-marker {
+  border-color: transparent !important;
+  background-color: transparent !important;
+}
+</style>

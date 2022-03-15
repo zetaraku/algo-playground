@@ -1,26 +1,52 @@
-<template>
-  <div class="h-screen flex flex-col justify-center items-center text-center">
-    <div class="i-mdi:ferris-wheel text-60 text-teal-600 animate-bounce" />
+<script setup lang="ts">
+import SvgIcon from '@jamescoyle/vue-icon';
+import { mdiFerrisWheel } from '@mdi/js';
+</script>
 
-    <h1 class="text-10 mb-3">
+<template>
+  <div
+    class="d-flex flex-column justify-content-center align-items-center"
+    style="height: calc(100vh - 56px - 41px - 2rem);"
+  >
+    <SvgIcon
+      class="d-inline-block align-text-top m-5 animate-bounce"
+      type="mdi"
+      :path="mdiFerrisWheel"
+      style="width: 16rem; height: 16rem; color: cadetblue;"
+    />
+
+    <h1 class="mb-5">
       Algo Playground
     </h1>
-    <p class="text-5 text-center leading-relaxed mb-10">
+    <p class="text-center lh-lg mb-5">
       Welcome! :D<br>
-      Here you can play with algorithm and watch it run step by step.<br>
+      Here you can play with algorithms and watch it run step by step.<br>
       weeeeeeeeeeeeee &lt;:)
     </p>
 
     <NuxtLink
       class="
-        px-5 py-3 text-4xl text-teal-600 no-underline
-        rounded border border-teal-600
-        hover:bg-teal-600 hover:text-white
-        animate-pulse hover:animate-none
+        btn btn-lg btn-outline-primary
       "
       to="/alg"
     >
-      Enter
+      main();
     </NuxtLink>
   </div>
 </template>
+
+<style lang="scss" scoped>
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+</style>
