@@ -47,7 +47,11 @@ function resetPointers() {
 
 function nextStep() {
   if (currentProcess.value === null) return;
-  infoMessage.value = currentProcess.value.next().value;
+
+  const result = currentProcess.value.next();
+  infoMessage.value = result.value;
+
+  if (result.done) currentProcess.value = null;
 }
 async function autoPlay() {
   if (autoPlaying.value) return;
@@ -98,7 +102,6 @@ function* computeLPSTable() {
   yield 'Begin Compute LPS Table (Click NEXT to Continue)';
 
   if (pattern.value.length === 0) {
-    endCurrentProcess();
     return 'Finished (You can Match Text now!)';
   }
 
@@ -141,7 +144,6 @@ function* computeLPSTable() {
     }
   }
 
-  endCurrentProcess();
   return 'Finished (You can Match Text now!)';
 }
 
@@ -153,7 +155,6 @@ function* matchText() {
   yield 'Begin Match Text (Click NEXT to Continue)';
 
   if (pattern.value.length === 0) {
-    endCurrentProcess();
     return 'Found at Index 0 (pattern is empty)';
   }
 
@@ -167,7 +168,6 @@ function* matchText() {
       jIndex.value += 1;
 
       if (iIndex.value === pattern.value.length) {
-        endCurrentProcess();
         return `Found at Index ${jIndex.value - pattern.value.length}`;
       }
     } else {
@@ -190,7 +190,6 @@ function* matchText() {
     }
   }
 
-  endCurrentProcess();
   return 'Not found';
 }
 
