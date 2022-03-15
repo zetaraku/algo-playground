@@ -5,9 +5,9 @@ definePageMeta({
 
 const categories = [
   {
-    title: 'Strings',
+    name: 'Strings',
     pages: [
-      { title: 'Knuth–Morris–Pratt algorithm', to: '/alg/kmp' },
+      { name: 'Knuth–Morris–Pratt algorithm', to: '/alg/kmp' },
     ],
   },
 ];
@@ -23,14 +23,14 @@ const categories = [
         v-for="(category, i) in categories"
         :key="i"
       >
-        {{ category.title }}
+        {{ category.name }}
         <ul>
           <li
             v-for="(page, j) in category.pages"
             :key="j"
           >
             <NuxtLink :to="page.to">
-              {{ page.title }}
+              {{ page.name }}
             </NuxtLink>
           </li>
         </ul>
