@@ -13,6 +13,7 @@ const props = defineProps<{
       border: 4px solid lightgray;
       margin-left: -4px;
       font-size: 36px;
+      vertical-align: middle;
     "
   >
     <span
