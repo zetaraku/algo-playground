@@ -1,9 +1,3 @@
-<script setup lang="ts">
-const props = defineProps<{
-  value: any,
-}>();
-</script>
-
 <template>
   <div
     class="d-inline-flex justify-content-center align-items-center"
@@ -16,18 +10,6 @@ const props = defineProps<{
       vertical-align: middle;
     "
   >
-    <slot>
-      <span
-        v-if="value != null"
-      >
-        {{ value }}
-      </span>
-      <span
-        v-else
-        style="color: darkgray;"
-      >
-        {{ '-' }}
-      </span>
-    </slot>
+    <slot />
   </div>
 </template>
