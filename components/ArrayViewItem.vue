@@ -16,16 +16,18 @@ const props = defineProps<{
       vertical-align: middle;
     "
   >
-    <span
-      v-if="value != null"
-    >
-      {{ value }}
-    </span>
-    <span
-      v-else
-      style="color: darkgray;"
-    >
-      {{ '-' }}
-    </span>
+    <slot>
+      <span
+        v-if="value != null"
+      >
+        {{ value }}
+      </span>
+      <span
+        v-else
+        style="color: darkgray;"
+      >
+        {{ '-' }}
+      </span>
+    </slot>
   </div>
 </template>
