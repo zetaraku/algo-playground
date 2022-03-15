@@ -7,5 +7,6 @@ export default defineNuxtConfig({
     strict: true,
   },
   css: [
+    'bootstrap/scss/bootstrap.scss',
   ],
 });
