@@ -53,7 +53,7 @@ async function autoPlay() {
   if (autoPlaying.value) return;
 
   autoPlaying.value = true;
-  while (currentProcess.value && !currentProcess.value.next().done) {
+  while (currentProcess.value !== null) {
     nextStep();
     // eslint-disable-next-line no-await-in-loop
     await new Promise((resolve) => {
@@ -63,7 +63,7 @@ async function autoPlay() {
   autoPlaying.value = false;
 }
 async function skipAll() {
-  while (currentProcess.value && !currentProcess.value.next().done) {
+  while (currentProcess.value !== null) {
     nextStep();
   }
 }
