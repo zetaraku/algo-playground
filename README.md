@@ -1,8 +1,8 @@
 # Algo Playground
 
-🎡 Play with algorithm and watch it run step by step. 😀
+🎡 Play with algorithms and watch it run step by step. 😀
 
-This project is built with [Nuxt3](https://v3.nuxtjs.org) and [UnoCSS](https://github.com/unocss/unocss).
+This project is built with [Nuxt 3](https://v3.nuxtjs.org) and [Bootstrap 5](https://getbootstrap.com/).
 
 ## Live Demo
 
