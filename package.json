@@ -9,7 +9,6 @@
     "@iconify-json/mdi": "^1.1.1",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
-    "@unocss/nuxt": "^0.27.2",
     "eslint": "^8.10.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
