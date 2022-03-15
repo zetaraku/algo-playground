@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-  item: any,
+  value: any,
 }>();
 </script>
 
@@ -17,9 +17,9 @@ const props = defineProps<{
     "
   >
     <span
-      v-if="item != null"
+      v-if="value != null"
     >
-      {{ item }}
+      {{ value }}
     </span>
     <span
       v-else

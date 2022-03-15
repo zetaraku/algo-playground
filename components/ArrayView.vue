@@ -10,13 +10,13 @@ const props = defineProps<{
     style="padding-left: 4px;"
   >
     <ArrayViewItem
-      v-for="(item, i) in data"
+      v-for="(value, i) in data"
       :key="i"
-      :item="item"
+      :value="value"
     />
     <ArrayViewItem
       style="color: red; background-color: lightgray;"
-      :item="'$'"
+      :value="'$'"
     />
     <slot>
       <!-- marker slot -->
