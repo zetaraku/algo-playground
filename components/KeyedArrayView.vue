@@ -10,39 +10,40 @@ const props = defineProps<{
     style="padding-bottom: 60px;"
   >
     <!-- array elements -->
-    <ArrayViewItem
-      v-for="(item, index) in data"
-      :key="item.key"
-      class="position-absolute"
-      style="transition: all cubic-bezier(0.4, 0, 0.2, 1) 300ms;"
-      :style="{
-        left: `${4 + 4 * (15 - 1) * index}px`,
-      }"
-    >
-      <slot
-        name="item"
-        :index="index"
-        :value="item.value"
-        :item="item"
+    <TransitionGroup name="list">
+      <ArrayViewItem
+        v-for="(item, index) in data"
+        :key="item.key"
+        class="position-absolute"
+        :style="{
+          left: `${4 + 4 * (15 - 1) * index}px`,
+        }"
       >
-        <span
-          v-if="item.value === undefined"
-          style="color: darkgray;"
+        <slot
+          name="item"
+          :index="index"
+          :value="item.value"
+          :item="item"
         >
-          {{ '-' }}
-        </span>
-        <span
-          v-else-if="item.value === null"
-          class="fs-6"
-          style="color: blue;"
-        >
-          {{ 'NULL' }}
-        </span>
-        <span v-else>
-          {{ item.value }}
-        </span>
-      </slot>
-    </ArrayViewItem>
+          <span
+            v-if="item.value === undefined"
+            style="color: darkgray;"
+          >
+            {{ '-' }}
+          </span>
+          <span
+            v-else-if="item.value === null"
+            class="fs-6"
+            style="color: blue;"
+          >
+            {{ 'NULL' }}
+          </span>
+          <span v-else>
+            {{ item.value }}
+          </span>
+        </slot>
+      </ArrayViewItem>
+    </TransitionGroup>
 
     <!-- end indicator -->
     <ArrayViewItem
@@ -68,3 +69,23 @@ const props = defineProps<{
     </slot>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
+}
+</style>
