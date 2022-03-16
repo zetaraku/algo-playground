@@ -20,7 +20,7 @@ const stage = ref<'preprocessing' | 'matching'>('preprocessing');
 const currentProcess = ref<Generator<string, string> | null>(null);
 const infoMessage = ref<string | null>(null);
 const autoPlaying = ref<boolean>(false);
-const autoPlayDelay = ref<number>(250);
+const autoPlayDelay = ref<number>(500);
 
 const lps = ref<{ key: number, value: number | undefined }[]>([]);
 const lpsFinished = computed<boolean>(() => lps.value.every(({ value }) => value !== undefined));
