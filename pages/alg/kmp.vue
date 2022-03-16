@@ -358,13 +358,13 @@ onMounted(() => {
       >
         <!-- Matched Range -->
         <ArrayViewRangeMarker
-          class="previous-matched border-end-0"
+          class="marker-color-lime border-end-0"
           :begin-index="0"
           :end-index="iIndex"
         />
         <!-- Current i Index -->
         <ArrayViewIndexMarker
-          :class="currentIndexesMatched ? 'current-matched' : 'current-mismatched'"
+          :class="currentIndexesMatched ? 'marker-color-blue' : 'marker-color-red'"
           :index="iIndex"
         >
           <span class="marker-text">
@@ -384,7 +384,7 @@ onMounted(() => {
         <!-- Current k Index (lookup indicator) -->
         <ArrayViewIndexMarker
           v-if="kIndex !== null"
-          class="previous-matched"
+          class="marker-color-lime"
           :index="kIndex"
         >
           <span class="marker-text">
@@ -403,14 +403,14 @@ onMounted(() => {
       >
         <!-- Matched Range -->
         <ArrayViewRangeMarker
-          class="previous-matched border-end-0"
+          class="marker-color-lime border-end-0"
           :begin-index="jIndex - iIndex"
           :end-index="jIndex"
         />
 
         <!-- Current j Index -->
         <ArrayViewIndexMarker
-          :class="currentIndexesMatched ? 'current-matched' : 'current-mismatched'"
+          :class="currentIndexesMatched ? 'marker-color-blue' : 'marker-color-red'"
           :index="jIndex"
         >
           <span class="marker-text">
@@ -429,7 +429,7 @@ onMounted(() => {
       >
         <!-- Matched Range -->
         <ArrayViewRangeMarker
-          class="previous-matched border-end-0"
+          class="marker-color-lime border-end-0"
           :begin-index="jIndex - iIndex"
           :end-index="jIndex"
         />
@@ -437,7 +437,7 @@ onMounted(() => {
         <!-- Current j-i Index -->
         <ArrayViewIndexMarker
           v-if="iIndex > 0"
-          class="previous-matched no-marker"
+          class="marker-color-lime marker-color-text-only"
           :index="jIndex - iIndex"
         >
           <span class="marker-text">
@@ -447,7 +447,7 @@ onMounted(() => {
 
         <!-- Current j Index -->
         <ArrayViewIndexMarker
-          :class="currentIndexesMatched ? 'current-matched' : 'current-mismatched'"
+          :class="currentIndexesMatched ? 'marker-color-blue' : 'marker-color-red'"
           :index="jIndex"
         >
           <span class="marker-text">
@@ -460,29 +460,29 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.previous-matched {
+.marker-color-lime {
   color: rgba(163, 230, 53, 1.0);
   border-color: rgba(163, 230, 53, 1.0);
   background-color: rgba(163, 230, 53, 0.5);
 }
-.current-matched {
+.marker-color-blue {
   color: rgba(59, 130, 246, 1.0);
   border-color: rgba(59, 130, 246, 1.0);
   background-color: rgba(59, 130, 246, 0.5);
 }
-.current-mismatched {
+.marker-color-red {
   color: rgba(239, 68, 68, 1.0);
   border-color: rgba(239, 68, 68, 1.0);
   background-color: rgba(239, 68, 68, 0.5);
+}
+.marker-color-text-only {
+  border-color: transparent !important;
+  background-color: transparent !important;
 }
 .marker-text {
   position: relative;
   bottom: -60px;
   font-size: 20px;
   font-weight: bold;
-}
-.no-marker {
-  border-color: transparent !important;
-  background-color: transparent !important;
 }
 </style>
