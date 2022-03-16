@@ -25,10 +25,6 @@ const autoPlayDelay = ref<number>(250);
 const lps = ref<{ key: number, value: number | undefined }[]>([]);
 const lpsFinished = computed<boolean>(() => lps.value.every(({ value }) => value !== undefined));
 
-function initLPSTable() {
-  lps.value = [...Array(pattern.value.length)].map((_, key) => ({ key, value: undefined }));
-}
-
 const iIndex = ref<number>(0);
 const jIndex = ref<number>(0);
 const kIndex = ref<number | null>(null);
@@ -47,6 +43,9 @@ function resetPointers() {
   iIndex.value = 0;
   jIndex.value = 0;
   kIndex.value = null;
+}
+function initLPSTable() {
+  lps.value = [...Array(pattern.value.length)].map((_, key) => ({ key, value: undefined }));
 }
 
 function nextStep() {
@@ -70,11 +69,12 @@ async function autoPlay() {
   }
   autoPlaying.value = false;
 }
-async function skipAll() {
+function skipAll() {
   while (currentProcess.value !== null) {
     nextStep();
   }
 }
+
 function beginProcess(start: () => Generator<string, string>) {
   currentProcess.value = start();
   nextStep();
@@ -83,19 +83,6 @@ function endCurrentProcess() {
   currentProcess.value = null;
   infoMessage.value = null;
 }
-
-watch(pattern, () => {
-  resetPointers();
-  initLPSTable();
-  endCurrentProcess();
-});
-
-watch(text, () => {
-  if (stage.value === 'matching') {
-    resetPointers();
-    endCurrentProcess();
-  }
-});
 
 function* computeLPSTable() {
   stage.value = 'preprocessing';
@@ -150,7 +137,6 @@ function* computeLPSTable() {
 
   return 'Finished (You can Match Text now!)';
 }
-
 function* matchText() {
   stage.value = 'matching';
 
@@ -196,6 +182,18 @@ function* matchText() {
 
   return 'Not found';
 }
+
+watch(pattern, () => {
+  endCurrentProcess();
+  resetPointers();
+  initLPSTable();
+});
+watch(text, () => {
+  if (stage.value === 'matching') {
+    endCurrentProcess();
+    resetPointers();
+  }
+});
 
 onMounted(() => {
   patternInput.value = '😀😀😀🎡😀😀😀😀';
