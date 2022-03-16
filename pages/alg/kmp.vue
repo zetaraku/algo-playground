@@ -422,7 +422,7 @@ onMounted(() => {
     <div v-if="stage === 'matching'">
       <label class="fs-5 font-monospace">text</label>
       <ArrayView
-        :data="stage !== 'matching' ? pattern : text"
+        :data="text"
         style="padding-bottom: 60px;"
       >
         <!-- Matched Range -->
