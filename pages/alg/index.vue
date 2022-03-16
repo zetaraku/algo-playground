@@ -10,6 +10,12 @@ const categories = [
       { name: 'Knuth–Morris–Pratt algorithm', to: '/alg/kmp' },
     ],
   },
+  {
+    name: 'Array',
+    pages: [
+      { name: 'Fisher–Yates shuffle', to: '/alg/shuffle' },
+    ],
+  },
 ];
 </script>
 

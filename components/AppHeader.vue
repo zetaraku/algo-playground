@@ -14,6 +14,9 @@ const navs = [
       null,
       { name: 'Strings' },
       { name: 'Knuth–Morris–Pratt algorithm', to: '/alg/kmp' },
+      null,
+      { name: 'Array' },
+      { name: 'Fisher–Yates shuffle', to: '/alg/shuffle' },
     ],
   },
   {
