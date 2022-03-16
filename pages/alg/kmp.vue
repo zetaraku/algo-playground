@@ -6,20 +6,20 @@ definePageMeta({
   title: 'Knuth–Morris–Pratt algorithm',
 });
 
-const patternInput = ref('');
-const textInput = ref('');
+const patternInput = ref<string>('');
+const textInput = ref<string>('');
 
-const pattern = computed(() => [...patternInput.value]);
-const text = computed(() => [...textInput.value]);
+const pattern = computed<string[]>(() => [...patternInput.value]);
+const text = computed<string[]>(() => [...textInput.value]);
 
 const stage = ref<'preprocessing' | 'matching'>('preprocessing');
 const currentProcess = ref<Generator<string, string> | null>(null);
 const infoMessage = ref<string | null>(null);
-const autoPlaying = ref(false);
-const autoPlayDelay = ref(250);
+const autoPlaying = ref<boolean>(false);
+const autoPlayDelay = ref<number>(250);
 
 const lps = ref<(number | undefined)[]>([]);
-const lpsFinished = computed(() => !lps.value.includes(undefined));
+const lpsFinished = computed<boolean>(() => !lps.value.includes(undefined));
 
 function initLPSTable() {
   lps.value = [...Array(pattern.value.length)];
