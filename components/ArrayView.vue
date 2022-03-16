@@ -9,6 +9,7 @@ const props = defineProps<{
     class="position-relative"
     style="padding-left: 4px;"
   >
+    <!-- array elements -->
     <ArrayViewItem
       v-for="(value, index) in data"
       :key="index"
@@ -36,6 +37,8 @@ const props = defineProps<{
         </span>
       </slot>
     </ArrayViewItem>
+
+    <!-- end indicator -->
     <ArrayViewItem
       style="background-color: lightgray;"
     >
@@ -51,6 +54,7 @@ const props = defineProps<{
         </span>
       </slot>
     </ArrayViewItem>
+
     <slot>
       <!-- marker slot -->
     </slot>
