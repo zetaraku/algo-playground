@@ -19,15 +19,20 @@ const props = defineProps<{
         :value="value"
       >
         <span
-          v-if="value != null"
-        >
-          {{ value }}
-        </span>
-        <span
-          v-else
+          v-if="value === undefined"
           style="color: darkgray;"
         >
           {{ '-' }}
+        </span>
+        <span
+          v-else-if="value === null"
+          class="fs-6"
+          style="color: blue;"
+        >
+          {{ 'NULL' }}
+        </span>
+        <span v-else>
+          {{ value }}
         </span>
       </slot>
     </ArrayViewItem>
