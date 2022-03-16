@@ -352,7 +352,7 @@ onMounted(() => {
       <label class="fs-5 font-monospace">pattern</label>
       <ArrayView
         :data="pattern"
-        style="padding-bottom: 60px;"
+        style="margin-bottom: 60px;"
       >
         <!-- Matched Range -->
         <ArrayViewRangeMarker
@@ -377,7 +377,7 @@ onMounted(() => {
       <label class="fs-5 font-monospace">lps</label>
       <ArrayView
         :data="lps"
-        style="padding-bottom: 60px;"
+        style="margin-bottom: 60px;"
       >
         <!-- Current k Index (lookup indicator) -->
         <ArrayViewIndexMarker
@@ -397,7 +397,7 @@ onMounted(() => {
       <label class="fs-5 font-monospace">pattern</label>
       <ArrayView
         :data="pattern"
-        style="padding-bottom: 60px;"
+        style="margin-bottom: 60px;"
       >
         <!-- Matched Range -->
         <ArrayViewRangeMarker
@@ -423,7 +423,7 @@ onMounted(() => {
       <label class="fs-5 font-monospace">text</label>
       <ArrayView
         :data="text"
-        style="padding-bottom: 60px;"
+        style="margin-bottom: 60px;"
       >
         <!-- Matched Range -->
         <ArrayViewRangeMarker
