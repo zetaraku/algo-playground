@@ -2,61 +2,34 @@
 const props = defineProps<{
   data: any[],
 }>();
+
+const keyedData = computed(
+  () => props.data.map((value, index) => ({ key: index, value })),
+);
 </script>
 
 <template>
-  <div
-    class="position-relative"
-    style="padding-left: 4px;"
-  >
+  <KeyedArrayView :data="keyedData">
     <!-- array elements -->
-    <ArrayViewItem
-      v-for="(value, index) in data"
-      :key="index"
-    >
+    <template #item="{ index, value, item }">
       <slot
         name="item"
         :index="index"
         :value="value"
-      >
-        <span
-          v-if="value === undefined"
-          style="color: darkgray;"
-        >
-          {{ '-' }}
-        </span>
-        <span
-          v-else-if="value === null"
-          class="fs-6"
-          style="color: blue;"
-        >
-          {{ 'NULL' }}
-        </span>
-        <span v-else>
-          {{ value }}
-        </span>
-      </slot>
-    </ArrayViewItem>
+        :item="item"
+      />
+    </template>
 
     <!-- end indicator -->
-    <ArrayViewItem
-      style="background-color: lightgray;"
-    >
+    <template #end="{ index }">
       <slot
         name="end"
-        :index="data.length"
-      >
-        <span
-          class="fs-5"
-          style="transform: rotate(-45deg);"
-        >
-          END
-        </span>
-      </slot>
-    </ArrayViewItem>
+        :index="index"
+      />
+    </template>
 
     <slot>
       <!-- marker slot -->
     </slot>
-  </div>
+  </KeyedArrayView>
 </template>
