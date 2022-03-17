@@ -1,11 +1,10 @@
 <template>
   <div
-    class="d-inline-flex justify-content-center align-items-center"
+    class="d-inline-flex justify-content-center align-items-center fs-2"
     style="
       width: 60px;
       height: 60px;
       border: 4px solid lightgray;
-      font-size: 36px;
       vertical-align: middle;
     "
   >
