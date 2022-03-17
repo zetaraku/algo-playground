@@ -3,6 +3,11 @@ import { defineNuxtConfig } from 'nuxt3';
 
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
+  publicRuntimeConfig: {
+    GA_MEASUREMENT_ID: process.env.GA_MEASUREMENT_ID,
+  },
+  privateRuntimeConfig: {
+  },
   typescript: {
     strict: true,
   },
