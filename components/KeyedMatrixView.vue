@@ -22,6 +22,7 @@ const indexedFlatData = computed(
       <ArrayViewItem
         v-for="{ item, index: { i, j }} in indexedFlatData"
         :key="item.key"
+        :value="item.value"
         class="position-absolute"
         :style="{
           top: `${4 * (15 - 1) * i}px`,
@@ -34,24 +35,7 @@ const indexedFlatData = computed(
           :j-index="j"
           :value="item.value"
           :item="item"
-        >
-          <span
-            v-if="item.value === undefined"
-            style="color: darkgray;"
-          >
-            {{ '-' }}
-          </span>
-          <span
-            v-else-if="item.value === null"
-            class="fs-6"
-            style="color: blue;"
-          >
-            {{ 'NULL' }}
-          </span>
-          <span v-else>
-            {{ item.value }}
-          </span>
-        </slot>
+        />
       </ArrayViewItem>
     </TransitionGroup>
 
