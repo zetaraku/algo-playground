@@ -17,48 +17,50 @@ const indexedFlatData = computed(
     class="position-relative"
     :style="{ 'padding-bottom': `${ 4 + 4 * (15 - 1) * data.length }px` }"
   >
-    <!-- array elements -->
-    <TransitionGroup name="list">
-      <ArrayViewValueBox
-        v-for="{ item, index: { i, j }} in indexedFlatData"
-        :key="item.key"
-        :value="item.value"
+    <ClientOnly>
+      <!-- array elements -->
+      <TransitionGroup name="list">
+        <ArrayViewValueBox
+          v-for="{ item, index: { i, j }} in indexedFlatData"
+          :key="item.key"
+          :value="item.value"
+          class="position-absolute"
+          :style="{
+            top: `${4 * (15 - 1) * i}px`,
+            left: `${4 * (15 - 1) * j}px`,
+          }"
+        >
+          <slot
+            name="item"
+            :i-index="i"
+            :j-index="j"
+            :value="item.value"
+            :item="item"
+          />
+        </ArrayViewValueBox>
+      </TransitionGroup>
+
+      <!-- end indicator -->
+      <ArrayViewEndBox
+        v-for="(row, i) in data"
+        :key="i"
         class="position-absolute"
         :style="{
           top: `${4 * (15 - 1) * i}px`,
-          left: `${4 * (15 - 1) * j}px`,
+          left: `${4 * (15 - 1) * row.length}px`,
         }"
       >
         <slot
-          name="item"
+          name="end"
           :i-index="i"
-          :j-index="j"
-          :value="item.value"
-          :item="item"
+          :j-index="row.length"
         />
-      </ArrayViewValueBox>
-    </TransitionGroup>
+      </ArrayViewEndBox>
 
-    <!-- end indicator -->
-    <ArrayViewEndBox
-      v-for="(row, i) in data"
-      :key="i"
-      class="position-absolute"
-      :style="{
-        top: `${4 * (15 - 1) * i}px`,
-        left: `${4 * (15 - 1) * row.length}px`,
-      }"
-    >
-      <slot
-        name="end"
-        :i-index="i"
-        :j-index="row.length"
-      />
-    </ArrayViewEndBox>
-
-    <slot>
-      <!-- marker slot -->
-    </slot>
+      <slot>
+        <!-- marker slot -->
+      </slot>
+    </ClientOnly>
   </div>
 </template>
 
