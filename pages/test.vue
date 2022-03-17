@@ -1,4 +1,16 @@
 <script setup lang="ts">
+const arr1d = ref(
+  [...Array(10)].map(
+    (_, i) => i,
+  ),
+);
+const arr2d = ref(
+  [...Array(10)].map(
+    (_1, i) => [...Array(10)].map(
+      (_2, j) => 10 * i + j,
+    ),
+  ),
+);
 const keyedArr1d = ref(
   [...Array(10)].map(
     (_, i) => ({ key: i, value: i }),
@@ -44,6 +56,30 @@ function shuffle2d(matrix: any[][]) {
 
 <template>
   <div>
+    <!-- ArrayView -->
+    <div class="mb-3">
+      <div class="d-flex align-items-end py-2">
+        <label class="fs-5 font-monospace">
+          ArrayView
+        </label>
+        <button
+          class="btn btn-sm btn-outline-secondary ms-2"
+          @click="shuffle1d(arr1d);"
+        >
+          shuffle
+        </button>
+      </div>
+      <ArrayView
+        :data="arr1d"
+      >
+        <ArrayViewRangeMarker
+          class="marker-color-blue"
+          :begin-index="3"
+          :end-index="7"
+        />
+      </ArrayView>
+    </div>
+
     <!-- KeyedArrayView -->
     <div class="mb-3">
       <div class="d-flex align-items-end py-2">
@@ -66,6 +102,30 @@ function shuffle2d(matrix: any[][]) {
           :end-index="7"
         />
       </KeyedArrayView>
+    </div>
+
+    <!-- MatrixView -->
+    <div class="mb-3">
+      <div class="d-flex align-items-end py-2">
+        <label class="fs-5 font-monospace">
+          MatrixView
+        </label>
+        <button
+          class="btn btn-sm btn-outline-secondary ms-2"
+          @click="shuffle2d(arr2d);"
+        >
+          shuffle
+        </button>
+      </div>
+      <MatrixView
+        :data="arr2d"
+      >
+        <MatrixViewRangeMarker
+          class="marker-color-blue"
+          :begin-index="{ i: 3, j: 3 }"
+          :end-index="{ i: 7, j: 7 }"
+        />
+      </MatrixView>
     </div>
 
     <!-- KeyedMatrixView -->
