@@ -16,7 +16,7 @@ const props = defineProps<{
         :key="item.key"
         class="position-absolute"
         :style="{
-          left: `${4 + 4 * (15 - 1) * index}px`,
+          left: `${4 * (15 - 1) * index}px`,
         }"
       >
         <slot
@@ -49,7 +49,7 @@ const props = defineProps<{
     <ArrayViewItem
       class="position-absolute"
       style="background-color: lightgray;"
-      :style="{ left: `${4 + 4 * (15 - 1) * data.length}px` }"
+      :style="{ left: `${4 * (15 - 1) * data.length}px` }"
     >
       <slot
         name="end"
