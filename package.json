@@ -19,6 +19,7 @@
   "dependencies": {
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^6.5.95",
-    "bootstrap": "^5.1.3"
+    "bootstrap": "^5.1.3",
+    "vue-gtag-next": "^1.14.0"
   }
 }
