@@ -20,6 +20,10 @@ const navs = [
     ],
   },
   {
+    name: 'Gallery',
+    to: '/test',
+  },
+  {
     name: 'About',
   },
 ];
