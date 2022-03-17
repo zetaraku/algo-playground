@@ -1,4 +1,4 @@
-# Algo Playground
+# 🎡 Algo Playground 😀
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f150676d-2b9f-4539-b6de-1ed9070be7c8/deploy-status)](https://app.netlify.com/sites/algo-playground/deploys)
 
