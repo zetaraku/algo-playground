@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiFerrisWheel, mdiGithub } from '@mdi/js';
+import { algNavItems } from '~/assets/menu';
 
 const navs = [
   {
@@ -11,12 +12,7 @@ const navs = [
     name: 'Algorithms',
     children: [
       { name: 'Index', to: '/alg' },
-      null,
-      { name: 'Strings' },
-      { name: 'Knuth–Morris–Pratt algorithm', to: '/alg/kmp' },
-      null,
-      { name: 'Array' },
-      { name: 'Fisher–Yates shuffle', to: '/alg/shuffle' },
+      ...algNavItems,
     ],
   },
   {

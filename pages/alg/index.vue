@@ -1,22 +1,9 @@
 <script setup lang="ts">
+import { algCategories } from '~/assets/menu';
+
 definePageMeta({
   title: 'Algorithms',
 });
-
-const categories = [
-  {
-    name: 'Strings',
-    pages: [
-      { name: 'Knuth–Morris–Pratt algorithm', to: '/alg/kmp' },
-    ],
-  },
-  {
-    name: 'Array',
-    pages: [
-      { name: 'Fisher–Yates shuffle', to: '/alg/shuffle' },
-    ],
-  },
-];
 </script>
 
 <template>
@@ -26,7 +13,7 @@ const categories = [
     </h2>
     <ul>
       <li
-        v-for="(category, i) in categories"
+        v-for="(category, i) in algCategories"
         :key="i"
       >
         {{ category.name }}
