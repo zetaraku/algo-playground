@@ -14,6 +14,8 @@ onMounted(() => import('bootstrap'));
 
 <template>
   <div class="vh-100">
+    <Html lang="en" />
+
     <header class="fixed-top">
       <AppHeader />
     </header>
