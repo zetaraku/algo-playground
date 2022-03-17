@@ -1,25 +1,25 @@
 <script setup lang="ts">
 const arr1d = ref(
   [...Array(10)].map(
-    (_, i) => i,
+    (_, i) => 1 + i,
   ),
 );
 const arr2d = ref(
   [...Array(10)].map(
     (_1, i) => [...Array(10)].map(
-      (_2, j) => 10 * i + j,
+      (_2, j) => 1 + 10 * i + j,
     ),
   ),
 );
 const keyedArr1d = ref(
   [...Array(10)].map(
-    (_, i) => ({ key: i, value: i }),
+    (_, i) => ({ key: i, value: 1 + i }),
   ),
 );
 const keyedArr2d = ref(
   [...Array(10)].map(
     (_1, i) => [...Array(10)].map(
-      (_2, j) => ({ key: `${i}-${j}`, value: 10 * i + j }),
+      (_2, j) => ({ key: `${i}-${j}`, value: 1 + 10 * i + j }),
     ),
   ),
 );
