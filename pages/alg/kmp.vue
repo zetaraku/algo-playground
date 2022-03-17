@@ -9,17 +9,13 @@ definePageMeta({
 const patternInput = ref<string>('');
 const textInput = ref<string>('');
 
-const pattern = computed<{ key: number, value: string | undefined }[]>(
-  () => [...patternInput.value].map((value, key) => ({ key, value })),
-);
-const text = computed<{ key: number, value: string | undefined }[]>(
-  () => [...textInput.value].map((value, key) => ({ key, value })),
-);
+const pattern = computed<string[]>(() => [...patternInput.value]);
+const text = computed<string[]>(() => [...textInput.value]);
 
 const stage = ref<'preprocessing' | 'matching'>('preprocessing');
 
-const lps = ref<{ key: number, value: number | undefined }[]>([]);
-const lpsFinished = computed<boolean>(() => lps.value.every(({ value }) => value !== undefined));
+const lps = ref<(number | undefined)[]>([]);
+const lpsFinished = computed<boolean>(() => !lps.value.includes(undefined));
 
 const iIndex = ref<number>(0);
 const jIndex = ref<number>(0);
@@ -27,10 +23,10 @@ const kIndex = ref<number | null>(null);
 
 const currentIndexesMatched = computed(() => {
   if (stage.value === 'preprocessing') {
-    return pattern.value[iIndex.value]?.value === pattern.value[jIndex.value]?.value;
+    return pattern.value[iIndex.value] === pattern.value[jIndex.value];
   }
   if (stage.value === 'matching') {
-    return pattern.value[iIndex.value]?.value === text.value[jIndex.value]?.value;
+    return pattern.value[iIndex.value] === text.value[jIndex.value];
   }
   return false;
 });
@@ -53,7 +49,7 @@ function resetPointers() {
   kIndex.value = null;
 }
 function initLPSTable() {
-  lps.value = [...Array(pattern.value.length)].map((_, key) => ({ key, value: undefined }));
+  lps.value = [...Array(pattern.value.length)];
 }
 
 function* computeLPSTable() {
@@ -69,17 +65,17 @@ function* computeLPSTable() {
   }
 
   yield 'set lps[0] = 0;';
-  lps.value[0].value = 0;
+  lps.value[0] = 0;
   yield 'set j = 1;';
   jIndex.value = 1;
 
   while (jIndex.value !== pattern.value.length) {
     yield 'check (pattern[i] == pattern[j])';
-    if (pattern.value[iIndex.value].value === pattern.value[jIndex.value].value) {
+    if (pattern.value[iIndex.value] === pattern.value[jIndex.value]) {
       yield 'check (pattern[i] == pattern[j]) => true';
 
       yield 'set lps[j] = i + 1;';
-      lps.value[jIndex.value].value = iIndex.value + 1;
+      lps.value[jIndex.value] = iIndex.value + 1;
 
       yield 'set i += 1; set j += 1;';
       iIndex.value += 1;
@@ -93,13 +89,13 @@ function* computeLPSTable() {
 
         kIndex.value = iIndex.value - 1;
         yield 'set i = lps[i - 1];';
-        iIndex.value = lps.value[iIndex.value - 1].value!;
+        iIndex.value = lps.value[iIndex.value - 1]!;
         kIndex.value = null;
       } else {
         yield 'check (i != 0) => false';
 
         yield 'set lps[j] = 0;';
-        lps.value[jIndex.value].value = 0;
+        lps.value[jIndex.value] = 0;
 
         yield 'set j += 1;';
         jIndex.value += 1;
@@ -122,7 +118,7 @@ function* matchText() {
 
   while (jIndex.value !== text.value.length) {
     yield 'check (pattern[i] == text[j])';
-    if (pattern.value[iIndex.value].value === text.value[jIndex.value].value) {
+    if (pattern.value[iIndex.value] === text.value[jIndex.value]) {
       yield 'check (pattern[i] == text[j]) => true';
 
       yield 'set i += 1; set j += 1;';
@@ -141,7 +137,7 @@ function* matchText() {
 
         kIndex.value = iIndex.value - 1;
         yield 'set i = lps[i - 1];';
-        iIndex.value = lps.value[iIndex.value - 1].value!;
+        iIndex.value = lps.value[iIndex.value - 1]!;
         kIndex.value = null;
       } else {
         yield 'check (i != 0) => false';
@@ -324,7 +320,7 @@ onMounted(() => {
     <!-- Pattern String -->
     <div>
       <label class="fs-5 font-monospace">pattern</label>
-      <KeyedArrayView
+      <ArrayView
         :data="pattern"
         style="margin-bottom: 60px;"
       >
@@ -343,13 +339,13 @@ onMounted(() => {
             i = {{ iIndex }}
           </span>
         </ArrayViewIndexMarker>
-      </KeyedArrayView>
+      </ArrayView>
     </div>
 
     <!-- LPS Table -->
     <div>
       <label class="fs-5 font-monospace">lps</label>
-      <KeyedArrayView
+      <ArrayView
         :data="lps"
         style="margin-bottom: 60px;"
       >
@@ -363,13 +359,13 @@ onMounted(() => {
             i-1 = {{ iIndex - 1 }}
           </span>
         </ArrayViewIndexMarker>
-      </KeyedArrayView>
+      </ArrayView>
     </div>
 
     <!-- Pattern String -->
     <div v-if="stage === 'preprocessing'">
       <label class="fs-5 font-monospace">pattern</label>
-      <KeyedArrayView
+      <ArrayView
         :data="pattern"
         style="margin-bottom: 60px;"
       >
@@ -389,13 +385,13 @@ onMounted(() => {
             j = {{ jIndex }}
           </span>
         </ArrayViewIndexMarker>
-      </KeyedArrayView>
+      </ArrayView>
     </div>
 
     <!-- Text String -->
     <div v-if="stage === 'matching'">
       <label class="fs-5 font-monospace">text</label>
-      <KeyedArrayView
+      <ArrayView
         :data="text"
         style="margin-bottom: 60px;"
       >
@@ -426,7 +422,7 @@ onMounted(() => {
             j = {{ jIndex }}
           </span>
         </ArrayViewIndexMarker>
-      </KeyedArrayView>
+      </ArrayView>
     </div>
   </div>
 </template>
