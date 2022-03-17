@@ -72,6 +72,15 @@ function shuffle2d(matrix: any[][]) {
       <ArrayView
         :data="arr1d"
       >
+        <template #item="{ index, value }">
+          <span class="position-absolute top-0 start-0 translate-middle-y text-muted fs-6">
+            {{ index }}
+          </span>
+          <span>
+            {{ value }}
+          </span>
+        </template>
+
         <ArrayViewRangeMarker
           class="marker-color-blue"
           :begin-index="3"
@@ -96,6 +105,15 @@ function shuffle2d(matrix: any[][]) {
       <KeyedArrayView
         :data="keyedArr1d"
       >
+        <template #item="{ index, value }">
+          <span class="position-absolute top-0 start-0 translate-middle-y text-muted fs-6">
+            {{ index }}
+          </span>
+          <span>
+            {{ value }}
+          </span>
+        </template>
+
         <ArrayViewRangeMarker
           class="marker-color-blue"
           :begin-index="3"
@@ -120,6 +138,15 @@ function shuffle2d(matrix: any[][]) {
       <MatrixView
         :data="arr2d"
       >
+        <template #item="{ iIndex, jIndex, value }">
+          <span class="position-absolute top-0 start-0 translate-middle-y text-muted fs-6">
+            {{ iIndex }},{{ jIndex }}
+          </span>
+          <span>
+            {{ value }}
+          </span>
+        </template>
+
         <MatrixViewRangeMarker
           class="marker-color-blue"
           :begin-index="{ i: 3, j: 3 }"
@@ -144,6 +171,15 @@ function shuffle2d(matrix: any[][]) {
       <KeyedMatrixView
         :data="keyedArr2d"
       >
+        <template #item="{ iIndex, jIndex, value }">
+          <span class="position-absolute top-0 start-0 translate-middle-y text-muted fs-6">
+            {{ iIndex }},{{ jIndex }}
+          </span>
+          <span>
+            {{ value }}
+          </span>
+        </template>
+
         <MatrixViewRangeMarker
           class="marker-color-blue"
           :begin-index="{ i: 3, j: 3 }"
