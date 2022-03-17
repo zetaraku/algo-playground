@@ -1,5 +1,5 @@
 <template>
-  <ArrayViewItem
+  <ArrayViewValueBox
     style="background-color: lightgray;"
   >
     <slot>
@@ -10,5 +10,5 @@
         END
       </span>
     </slot>
-  </ArrayViewItem>
+  </ArrayViewValueBox>
 </template>

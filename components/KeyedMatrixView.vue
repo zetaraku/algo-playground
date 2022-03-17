@@ -19,7 +19,7 @@ const indexedFlatData = computed(
   >
     <!-- array elements -->
     <TransitionGroup name="list">
-      <ArrayViewItem
+      <ArrayViewValueBox
         v-for="{ item, index: { i, j }} in indexedFlatData"
         :key="item.key"
         :value="item.value"
@@ -36,11 +36,11 @@ const indexedFlatData = computed(
           :value="item.value"
           :item="item"
         />
-      </ArrayViewItem>
+      </ArrayViewValueBox>
     </TransitionGroup>
 
     <!-- end indicator -->
-    <ArrayViewEnd
+    <ArrayViewEndBox
       v-for="(row, i) in data"
       :key="i"
       class="position-absolute"
@@ -54,7 +54,7 @@ const indexedFlatData = computed(
         :i-index="i"
         :j-index="row.length"
       />
-    </ArrayViewEnd>
+    </ArrayViewEndBox>
 
     <slot>
       <!-- marker slot -->
