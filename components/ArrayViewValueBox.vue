@@ -28,6 +28,13 @@ const props = defineProps<{
       >
         {{ 'NULL' }}
       </span>
+      <span
+        v-if="value === '\n'"
+        class="fs-3"
+        style="color: lightgray;"
+      >
+        {{ '\\n' }}
+      </span>
       <span v-else>
         {{ value }}
       </span>
