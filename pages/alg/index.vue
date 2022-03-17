@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { algCategories } from '~/assets/menu';
+import { algCategories } from '@@/assets/menu';
 
 definePageMeta({
   title: 'Algorithms',

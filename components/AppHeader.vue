@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiFerrisWheel, mdiGithub } from '@mdi/js';
-import { algNavItems } from '~/assets/menu';
+import { algNavItems } from '@@/assets/menu';
 
 const navs = [
   {
