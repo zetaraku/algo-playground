@@ -56,11 +56,10 @@ const indexedFlatData = computed(
     </TransitionGroup>
 
     <!-- end indicator -->
-    <ArrayViewItem
+    <ArrayViewEnd
       v-for="(row, i) in data"
       :key="i"
       class="position-absolute"
-      style="background-color: lightgray;"
       :style="{
         top: `${4 * (15 - 1) * i}px`,
         left: `${4 * (15 - 1) * row.length}px`,
@@ -70,15 +69,8 @@ const indexedFlatData = computed(
         name="end"
         :i-index="i"
         :j-index="row.length"
-      >
-        <span
-          class="fs-5"
-          style="transform: rotate(-45deg);"
-        >
-          END
-        </span>
-      </slot>
-    </ArrayViewItem>
+      />
+    </ArrayViewEnd>
 
     <slot>
       <!-- marker slot -->
