@@ -1,13 +1,13 @@
 <script setup lang="ts">
-const arr1d = ref(
+const keyedArr1d = ref(
   [...Array(10)].map(
     (_, i) => ({ key: i, value: i }),
   ),
 );
-const arr2d = ref(
+const keyedArr2d = ref(
   [...Array(10)].map(
     (_1, i) => [...Array(10)].map(
-      (_2, j) => ({ key: `${i}-${j}`, value: (10 * i + j) }),
+      (_2, j) => ({ key: `${i}-${j}`, value: 10 * i + j }),
     ),
   ),
 );
@@ -52,13 +52,13 @@ function shuffle2d(matrix: any[][]) {
         </label>
         <button
           class="btn btn-sm btn-outline-secondary ms-2"
-          @click="shuffle1d(arr1d);"
+          @click="shuffle1d(keyedArr1d);"
         >
           shuffle
         </button>
       </div>
       <KeyedArrayView
-        :data="arr1d"
+        :data="keyedArr1d"
       >
         <ArrayViewRangeMarker
           class="marker-color-blue"
@@ -76,13 +76,13 @@ function shuffle2d(matrix: any[][]) {
         </label>
         <button
           class="btn btn-sm btn-outline-secondary ms-2"
-          @click="shuffle2d(arr2d);"
+          @click="shuffle2d(keyedArr2d);"
         >
           shuffle
         </button>
       </div>
       <KeyedMatrixView
-        :data="arr2d"
+        :data="keyedArr2d"
       >
         <MatrixViewRangeMarker
           class="marker-color-blue"
