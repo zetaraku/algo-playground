@@ -5,6 +5,7 @@ import { defineNuxtConfig } from 'nuxt3';
 export default defineNuxtConfig({
   publicRuntimeConfig: {
     GA_MEASUREMENT_ID: process.env.GA_MEASUREMENT_ID,
+    FREE_COUNTER_URL: process.env.FREE_COUNTER_URL,
   },
   privateRuntimeConfig: {
   },
