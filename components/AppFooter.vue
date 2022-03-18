@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const config = useRuntimeConfig();
+</script>
+
 <template>
   <div class="container-fluid">
     <div class="d-flex flex-wrap justify-content-end align-items-center py-2 border-top">
@@ -6,7 +10,7 @@
         href="https://www.free-counter.jp/"
       >
         <img
-          src="https://www.f-counter.net/j/48/1647271963/"
+          :src="config.FREE_COUNTER_URL"
           alt="アクセスカウンター"
         >
       </a>
