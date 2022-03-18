@@ -18,8 +18,8 @@ const indexedFlatData = computed(
     :style="{ 'padding-bottom': `${ 4 + 4 * (15 - 1) * data.length }px` }"
   >
     <ClientOnly>
-      <!-- array elements -->
       <TransitionGroup name="list">
+        <!-- array elements -->
         <ArrayViewValueBox
           v-for="{ item, index: { i, j }} in indexedFlatData"
           :key="item.key"
@@ -38,24 +38,24 @@ const indexedFlatData = computed(
             :item="item"
           />
         </ArrayViewValueBox>
-      </TransitionGroup>
 
-      <!-- end indicator -->
-      <ArrayViewEndBox
-        v-for="(row, i) in data"
-        :key="i"
-        class="position-absolute"
-        :style="{
-          top: `${4 * (15 - 1) * i}px`,
-          left: `${4 * (15 - 1) * row.length}px`,
-        }"
-      >
-        <slot
-          name="end"
-          :i-index="i"
-          :j-index="row.length"
-        />
-      </ArrayViewEndBox>
+        <!-- end indicator -->
+        <ArrayViewEndBox
+          v-for="(row, i) in data"
+          :key="i"
+          class="position-absolute"
+          :style="{
+            top: `${4 * (15 - 1) * i}px`,
+            left: `${4 * (15 - 1) * row.length}px`,
+          }"
+        >
+          <slot
+            name="end"
+            :i-index="i"
+            :j-index="row.length"
+          />
+        </ArrayViewEndBox>
+      </TransitionGroup>
 
       <slot>
         <!-- marker slot -->
