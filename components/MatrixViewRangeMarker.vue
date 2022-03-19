@@ -14,6 +14,8 @@ const props = defineProps<{
     style="
       border: 4px solid;
       transition: all cubic-bezier(0.4, 0, 0.2, 1) 300ms;
+      font-size: 20px;
+      font-weight: bold;
     "
     :style="{
       height: `${Math.max(0, 4 + 4 * (15 - 1) * (endIndex.i - beginIndex.i))}px`,
