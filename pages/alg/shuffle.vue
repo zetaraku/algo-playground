@@ -268,6 +268,6 @@ onMounted(() => {
 }
 .marker-text {
   position: relative;
-  bottom: -60px;
+  bottom: -56px;
 }
 </style>
