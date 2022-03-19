@@ -210,7 +210,6 @@ onMounted(() => {
       <label class="fs-5 font-monospace">array</label>
       <KeyedArrayView
         :data="array"
-        style="margin-bottom: 60px;"
       >
         <template #item="{ value }">
           <span class="fs-3">

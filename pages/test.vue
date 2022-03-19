@@ -57,7 +57,7 @@ function shuffle2d(matrix: any[][]) {
 <template>
   <div>
     <!-- ArrayView -->
-    <div class="mb-3">
+    <div>
       <div class="d-flex align-items-end py-2">
         <label class="fs-5 font-monospace">
           ArrayView
@@ -90,7 +90,7 @@ function shuffle2d(matrix: any[][]) {
     </div>
 
     <!-- KeyedArrayView -->
-    <div class="mb-3">
+    <div>
       <div class="d-flex align-items-end py-2">
         <label class="fs-5 font-monospace">
           KeyedArrayView
@@ -123,7 +123,7 @@ function shuffle2d(matrix: any[][]) {
     </div>
 
     <!-- MatrixView -->
-    <div class="mb-3">
+    <div>
       <div class="d-flex align-items-end py-2">
         <label class="fs-5 font-monospace">
           MatrixView
@@ -156,7 +156,7 @@ function shuffle2d(matrix: any[][]) {
     </div>
 
     <!-- KeyedMatrixView -->
-    <div class="mb-3">
+    <div>
       <div class="d-flex align-items-end py-2">
         <label class="fs-5 font-monospace">
           KeyedMatrixView
