@@ -11,6 +11,12 @@ export const algCategories = [
       { name: 'Fisher–Yates shuffle', to: '/alg/shuffle' },
     ],
   },
+  {
+    name: 'Misc',
+    pages: [
+      { name: 'Brainfuck interpreter', to: '/alg/bf' },
+    ],
+  },
 ];
 
 export const algNavItems = algCategories.flatMap(
