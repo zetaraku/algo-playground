@@ -36,6 +36,8 @@ const props = defineProps<{
 
         <!-- end indicator -->
         <ArrayViewEndBox
+          v-for="n in 1"
+          :key="n"
           class="position-absolute"
           :style="{
             top: `${4 * (15 - 1) * 0}px`,
