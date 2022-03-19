@@ -17,6 +17,9 @@ const maxRowLength = computed(
     0,
   ),
 );
+
+provide('rowCount', computed(() => props.data.length));
+provide('colCount', computed(() => maxRowLength.value));
 </script>
 
 <template>
