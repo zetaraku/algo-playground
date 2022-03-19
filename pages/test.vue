@@ -91,20 +91,6 @@ function shuffle2d(matrix: any[][]) {
             END
           </span>
         </template>
-
-        <ArrayViewIndexMarker
-          class="marker-color-blue"
-          :index="1"
-        />
-        <ArrayViewRangeMarker
-          class="marker-color-lime"
-          :begin-index="3"
-          :end-index="7"
-        />
-        <ArrayViewIndexMarker
-          class="marker-color-red"
-          :index="8"
-        />
       </ArrayView>
     </div>
 
@@ -143,20 +129,6 @@ function shuffle2d(matrix: any[][]) {
             END
           </span>
         </template>
-
-        <ArrayViewIndexMarker
-          class="marker-color-blue"
-          :index="1"
-        />
-        <ArrayViewRangeMarker
-          class="marker-color-lime"
-          :begin-index="3"
-          :end-index="7"
-        />
-        <ArrayViewIndexMarker
-          class="marker-color-red"
-          :index="8"
-        />
       </KeyedArrayView>
     </div>
 
@@ -195,20 +167,6 @@ function shuffle2d(matrix: any[][]) {
             END
           </span>
         </template>
-
-        <MatrixViewIndexMarker
-          class="marker-color-blue"
-          :index="{ i: 1, j: 1 }"
-        />
-        <MatrixViewRangeMarker
-          class="marker-color-lime"
-          :begin-index="{ i: 3, j: 3 }"
-          :end-index="{ i: 7, j: 7 }"
-        />
-        <MatrixViewIndexMarker
-          class="marker-color-red"
-          :index="{ i: 8, j: 8 }"
-        />
       </MatrixView>
     </div>
 
@@ -247,20 +205,6 @@ function shuffle2d(matrix: any[][]) {
             END
           </span>
         </template>
-
-        <MatrixViewIndexMarker
-          class="marker-color-blue"
-          :index="{ i: 1, j: 1 }"
-        />
-        <MatrixViewRangeMarker
-          class="marker-color-lime"
-          :begin-index="{ i: 3, j: 3 }"
-          :end-index="{ i: 7, j: 7 }"
-        />
-        <MatrixViewIndexMarker
-          class="marker-color-red"
-          :index="{ i: 8, j: 8 }"
-        />
       </KeyedMatrixView>
     </div>
   </div>
