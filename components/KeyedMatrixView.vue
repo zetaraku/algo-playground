@@ -10,13 +10,20 @@ const flatData = computed(
     ),
   ),
 );
+
+const maxRowLength = computed(
+  () => props.data.reduce(
+    (acc, row) => Math.max(acc, row.length),
+    0,
+  ),
+);
 </script>
 
 <template>
   <div
     class="position-relative"
     :style="{
-      'padding-bottom': `${ 4 + 4 * (15 - 1) * data.length }px`,
+      'padding-bottom': `${ 4 + 4 * (15 - 1) * (data.length + 1) }px`,
       'margin-bottom': `${ 0 + 4 * (15 - 1) * 1 }px`,
       'margin-right': `${ 0 + 4 * (15 - 1) * 1 }px`,
     }"
@@ -43,7 +50,7 @@ const flatData = computed(
           />
         </ArrayViewValueBox>
 
-        <!-- end indicator -->
+        <!-- right end indicator -->
         <ArrayViewEndBox
           v-for="(row, i) in data"
           :key="i"
@@ -57,6 +64,23 @@ const flatData = computed(
             name="end"
             :i-index="i"
             :j-index="row.length"
+          />
+        </ArrayViewEndBox>
+
+        <!-- bottom end indicator -->
+        <ArrayViewEndBox
+          v-for="(_, j) in (maxRowLength + 1)"
+          :key="j"
+          class="position-absolute"
+          :style="{
+            top: `${4 * (15 - 1) * data.length}px`,
+            left: `${4 * (15 - 1) * j}px`,
+          }"
+        >
+          <slot
+            name="end"
+            :i-index="data.length"
+            :j-index="j"
           />
         </ArrayViewEndBox>
       </ListTransitionGroup>
