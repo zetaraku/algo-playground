@@ -473,21 +473,3 @@ function randomize2dRangeMarker() {
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.marker-color-lime {
-  color: rgba(163, 230, 53, 1.0);
-  border-color: rgba(163, 230, 53, 1.0);
-  background-color: rgba(163, 230, 53, 0.5);
-}
-.marker-color-blue {
-  color: rgba(59, 130, 246, 1.0);
-  border-color: rgba(59, 130, 246, 1.0);
-  background-color: rgba(59, 130, 246, 0.5);
-}
-.marker-color-red {
-  color: rgba(239, 68, 68, 1.0);
-  border-color: rgba(239, 68, 68, 1.0);
-  background-color: rgba(239, 68, 68, 0.5);
-}
-</style>
