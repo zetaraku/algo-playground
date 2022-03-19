@@ -5,27 +5,53 @@ const props = defineProps<{
 </script>
 
 <template>
-  <KeyedMatrixView :data="[data]">
-    <!-- array elements -->
-    <template #item="{ jIndex, value, item }">
-      <slot
-        name="item"
-        :index="jIndex"
-        :value="value"
-        :item="item"
-      />
-    </template>
+  <div
+    class="position-relative"
+    :style="{
+      'padding-bottom': `${ 4 + 4 * (15 - 1) * 1 }px`,
+      'margin-bottom': `${ 0 + 4 * (15 - 1) * 1 }px`,
+      'margin-right': `${ 0 + 4 * (15 - 1) * 1 }px`,
+    }"
+  >
+    <ClientOnly>
+      <ListTransitionGroup>
+        <!-- array elements -->
+        <ArrayViewValueBox
+          v-for="(item, index) in data"
+          :key="item.key"
+          :value="item.value"
+          class="position-absolute"
+          :style="{
+            top: `${4 * (15 - 1) * 0}px`,
+            left: `${4 * (15 - 1) * index}px`,
+          }"
+        >
+          <slot
+            name="item"
+            :index="index"
+            :value="item.value"
+            :item="item"
+          />
+        </ArrayViewValueBox>
 
-    <!-- end indicator -->
-    <template #end="{ jIndex }">
-      <slot
-        name="end"
-        :index="jIndex"
-      />
-    </template>
+        <!-- end indicator -->
+        <ArrayViewEndBox
+          class="position-absolute"
+          :style="{
+            top: `${4 * (15 - 1) * 0}px`,
+            left: `${4 * (15 - 1) * data.length}px`,
+          }"
+        >
+          <slot
+            name="end"
+            :index="data.length"
+          />
+        </ArrayViewEndBox>
+      </ListTransitionGroup>
 
-    <slot>
-      <!-- marker slot -->
-    </slot>
-  </KeyedMatrixView>
+      <slot>
+        <!-- marker slot -->
+      </slot>
+    </ClientOnly>
+  </div>
 </template>
