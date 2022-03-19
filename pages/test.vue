@@ -4,16 +4,16 @@ const arr1d = ref(
     (_, i) => 1 + i,
   ),
 );
+const keyedArr1d = ref(
+  [...Array(10)].map(
+    (_, i) => ({ key: i, value: 1 + i }),
+  ),
+);
 const arr2d = ref(
   [...Array(10)].map(
     (_1, i) => [...Array(10)].map(
       (_2, j) => 1 + 10 * i + j,
     ),
-  ),
-);
-const keyedArr1d = ref(
-  [...Array(10)].map(
-    (_, i) => ({ key: i, value: 1 + i }),
   ),
 );
 const keyedArr2d = ref(
