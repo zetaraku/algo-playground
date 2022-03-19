@@ -15,7 +15,10 @@ const indexedFlatData = computed(
 <template>
   <div
     class="position-relative"
-    :style="{ 'padding-bottom': `${ 4 + 4 * (15 - 1) * data.length }px` }"
+    :style="{
+      'padding-bottom': `${ 4 + 4 * (15 - 1) * data.length }px`,
+      'margin-bottom': `${ 0 + 4 * (15 - 1) * 1 }px`,
+    }"
   >
     <ClientOnly>
       <TransitionGroup name="list">
