@@ -490,8 +490,4 @@ function randomize2dRangeMarker() {
   border-color: rgba(239, 68, 68, 1.0);
   background-color: rgba(239, 68, 68, 0.5);
 }
-.marker-color-text-only {
-  border-color: transparent !important;
-  background-color: transparent !important;
-}
 </style>
