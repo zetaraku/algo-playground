@@ -213,29 +213,21 @@ function randomize2dRangeMarker() {
         <ArrayViewIndexMarker
           class="marker-color-red"
           :index="jIndexMarker1d"
-        />
-        <ArrayViewTextMarker
-          class="marker-color-red"
-          :index="jIndexMarker1d"
         >
           <span>
             i = {{ jIndexMarker1d }}
           </span>
-        </ArrayViewTextMarker>
+        </ArrayViewIndexMarker>
 
         <!-- i index marker -->
         <ArrayViewIndexMarker
-          class="marker-color-blue"
-          :index="iIndexMarker1d"
-        />
-        <ArrayViewTextMarker
           class="marker-color-blue"
           :index="iIndexMarker1d"
         >
           <span>
             i = {{ iIndexMarker1d }}
           </span>
-        </ArrayViewTextMarker>
+        </ArrayViewIndexMarker>
       </ArrayView>
     </div>
 
@@ -501,9 +493,5 @@ function randomize2dRangeMarker() {
 .marker-color-text-only {
   border-color: transparent !important;
   background-color: transparent !important;
-}
-.marker-text {
-  position: relative;
-  bottom: -56px;
 }
 </style>
