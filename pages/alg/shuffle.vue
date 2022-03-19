@@ -227,7 +227,7 @@ onMounted(() => {
           class="marker-color-blue"
           :index="iIndex"
         >
-          <span class="marker-text">
+          <span>
             i = {{ iIndex }}
           </span>
         </ArrayViewIndexMarker>
@@ -237,7 +237,7 @@ onMounted(() => {
           class="marker-color-red"
           :index="jIndex"
         >
-          <span class="marker-text">
+          <span>
             j = {{ jIndex }}
           </span>
         </ArrayViewIndexMarker>
@@ -265,9 +265,5 @@ onMounted(() => {
 .marker-color-text-only {
   border-color: transparent !important;
   background-color: transparent !important;
-}
-.marker-text {
-  position: relative;
-  bottom: -56px;
 }
 </style>

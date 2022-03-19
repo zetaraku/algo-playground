@@ -334,7 +334,7 @@ onMounted(() => {
           :class="currentIndexesMatched ? 'marker-color-blue' : 'marker-color-red'"
           :index="iIndex"
         >
-          <span class="marker-text">
+          <span>
             i = {{ iIndex }}
           </span>
         </ArrayViewIndexMarker>
@@ -353,7 +353,7 @@ onMounted(() => {
           class="marker-color-lime"
           :index="kIndex"
         >
-          <span class="marker-text">
+          <span>
             i-1 = {{ iIndex - 1 }}
           </span>
         </ArrayViewIndexMarker>
@@ -378,7 +378,7 @@ onMounted(() => {
           :class="currentIndexesMatched ? 'marker-color-blue' : 'marker-color-red'"
           :index="jIndex"
         >
-          <span class="marker-text">
+          <span>
             j = {{ jIndex }}
           </span>
         </ArrayViewIndexMarker>
@@ -404,7 +404,7 @@ onMounted(() => {
           class="marker-color-lime marker-color-text-only"
           :index="jIndex - iIndex"
         >
-          <span class="marker-text">
+          <span>
             j-i = {{ jIndex - iIndex }}
           </span>
         </ArrayViewIndexMarker>
@@ -414,7 +414,7 @@ onMounted(() => {
           :class="currentIndexesMatched ? 'marker-color-blue' : 'marker-color-red'"
           :index="jIndex"
         >
-          <span class="marker-text">
+          <span>
             j = {{ jIndex }}
           </span>
         </ArrayViewIndexMarker>
@@ -442,9 +442,5 @@ onMounted(() => {
 .marker-color-text-only {
   border-color: transparent !important;
   background-color: transparent !important;
-}
-.marker-text {
-  position: relative;
-  bottom: -56px;
 }
 </style>
