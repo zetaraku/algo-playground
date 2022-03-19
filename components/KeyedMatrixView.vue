@@ -18,6 +18,7 @@ const indexedFlatData = computed(
     :style="{
       'padding-bottom': `${ 4 + 4 * (15 - 1) * data.length }px`,
       'margin-bottom': `${ 0 + 4 * (15 - 1) * 1 }px`,
+      'margin-right': `${ 0 + 4 * (15 - 1) * 1 }px`,
     }"
   >
     <ClientOnly>
