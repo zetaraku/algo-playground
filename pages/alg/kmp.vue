@@ -446,7 +446,5 @@ onMounted(() => {
 .marker-text {
   position: relative;
   bottom: -60px;
-  font-size: 20px;
-  font-weight: bold;
 }
 </style>
