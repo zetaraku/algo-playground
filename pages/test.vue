@@ -80,6 +80,17 @@ function shuffle2d(matrix: any[][]) {
             {{ value }}
           </span>
         </template>
+        <template #end="{ index }">
+          <span class="position-absolute top-0 start-0 translate-middle-y text-danger fs-6">
+            {{ index }}
+          </span>
+          <span
+            class="fs-5"
+            style="transform: rotate(-45deg);"
+          >
+            END
+          </span>
+        </template>
 
         <ArrayViewIndexMarker
           class="marker-color-blue"
@@ -119,6 +130,17 @@ function shuffle2d(matrix: any[][]) {
           </span>
           <span>
             {{ value }}
+          </span>
+        </template>
+        <template #end="{ index }">
+          <span class="position-absolute top-0 start-0 translate-middle-y text-danger fs-6">
+            {{ index }}
+          </span>
+          <span
+            class="fs-5"
+            style="transform: rotate(-45deg);"
+          >
+            END
           </span>
         </template>
 
@@ -162,6 +184,17 @@ function shuffle2d(matrix: any[][]) {
             {{ value }}
           </span>
         </template>
+        <template #end="{ iIndex, jIndex }">
+          <span class="position-absolute top-0 start-0 translate-middle-y text-danger fs-6">
+            {{ iIndex }},{{ jIndex }}
+          </span>
+          <span
+            class="fs-5"
+            style="transform: rotate(-45deg);"
+          >
+            END
+          </span>
+        </template>
 
         <MatrixViewIndexMarker
           class="marker-color-blue"
@@ -201,6 +234,17 @@ function shuffle2d(matrix: any[][]) {
           </span>
           <span>
             {{ value }}
+          </span>
+        </template>
+        <template #end="{ iIndex, jIndex }">
+          <span class="position-absolute top-0 start-0 translate-middle-y text-danger fs-6">
+            {{ iIndex }},{{ jIndex }}
+          </span>
+          <span
+            class="fs-5"
+            style="transform: rotate(-45deg);"
+          >
+            END
           </span>
         </template>
 
