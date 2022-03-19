@@ -69,6 +69,7 @@ function shuffle2d(matrix: any[][]) {
           shuffle
         </button>
       </div>
+
       <ArrayView
         :data="arr1d"
       >
@@ -107,6 +108,7 @@ function shuffle2d(matrix: any[][]) {
           shuffle
         </button>
       </div>
+
       <KeyedArrayView
         :data="keyedArr1d"
       >
@@ -145,6 +147,7 @@ function shuffle2d(matrix: any[][]) {
           shuffle
         </button>
       </div>
+
       <MatrixView
         :data="arr2d"
       >
@@ -183,6 +186,7 @@ function shuffle2d(matrix: any[][]) {
           shuffle
         </button>
       </div>
+
       <KeyedMatrixView
         :data="keyedArr2d"
       >
