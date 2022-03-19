@@ -399,15 +399,15 @@ onMounted(() => {
         />
 
         <!-- Current j-i Index -->
-        <ArrayViewIndexMarker
+        <ArrayViewTextMarker
           v-if="iIndex > 0"
-          class="marker-color-lime marker-color-text-only"
+          class="marker-color-lime"
           :index="jIndex - iIndex"
         >
           <span>
             j-i = {{ jIndex - iIndex }}
           </span>
-        </ArrayViewIndexMarker>
+        </ArrayViewTextMarker>
 
         <!-- Current j Index -->
         <ArrayViewIndexMarker
