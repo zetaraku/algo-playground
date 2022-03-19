@@ -3,7 +3,7 @@ const props = defineProps<{
   data: { key: any, value: any }[][],
 }>();
 
-const indexedFlatData = computed(
+const flatData = computed(
   () => props.data.flatMap(
     (row, i) => row.map(
       (col, j) => ({ index: { i, j }, item: col }),
@@ -25,7 +25,7 @@ const indexedFlatData = computed(
       <ListTransitionGroup>
         <!-- array elements -->
         <ArrayViewValueBox
-          v-for="{ item, index: { i, j }} in indexedFlatData"
+          v-for="{ item, index: { i, j }} in flatData"
           :key="item.key"
           :value="item.value"
           class="position-absolute"
