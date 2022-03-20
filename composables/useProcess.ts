@@ -75,7 +75,6 @@ export default function useProcess() {
     beginProcess,
     endProcess,
     nextStep,
-    autoPlay: startAutoplay,
     startAutoplay,
     stopAutoplay,
     toggleAutoplay,
