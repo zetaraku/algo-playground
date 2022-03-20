@@ -51,12 +51,16 @@ function initOutput() {
   stdout.value = [];
 }
 
-function reset() {
-  endProcess();
+function init() {
   initBuffer();
   initOutput();
   resetPointers();
   stepCount.value = 0;
+}
+
+function reset() {
+  endProcess();
+  init();
 }
 function* run() {
   yield 'Begin Run (Click NEXT or AUTOPLAY to Continue)';
