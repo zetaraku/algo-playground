@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiWikipedia, mdiDotsHorizontal } from '@mdi/js';
+import { mdiWikipedia } from '@mdi/js';
 
 definePageMeta({
   title: 'Fisher–Yates shuffle',
@@ -143,23 +143,10 @@ onMounted(() => {
             NEXT &gt;
           </button>
         </div>
-        <div class="col">
-          <button
-            class="btn btn-sm btn-outline-secondary rounded-pill p-2 ms-2"
-            data-bs-toggle="collapse"
-            data-bs-target="#advancedOptions"
-          >
-            <SvgIcon
-              class="d-inline-block align-middle"
-              type="mdi"
-              :path="mdiDotsHorizontal"
-            />
-          </button>
-        </div>
       </div>
       <div
         id="advancedOptions"
-        class="row row-cols-auto g-2 align-items-end my-1 collapse"
+        class="row row-cols-auto g-2 align-items-end my-1"
       >
         <div class="col">
           <label class="mb-1">
