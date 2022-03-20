@@ -300,15 +300,6 @@ onMounted(() => {
             />
           </button>
         </div>
-        <div class="col">
-          <button
-            class="btn btn-lg btn-outline-secondary"
-            :disabled="currentProcess === null"
-            @click="endProcess();"
-          >
-            HALT
-          </button>
-        </div>
       </div>
     </div>
 
