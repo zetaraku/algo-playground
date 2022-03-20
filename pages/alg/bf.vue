@@ -62,8 +62,10 @@ function reset() {
   endProcess();
   init();
 }
-function* run() {
-  yield 'Begin Run (Click NEXT or AUTOPLAY to Continue)';
+function* runCode() {
+  init();
+
+  yield 'Begin Run Code (Click NEXT or AUTOPLAY to Continue)';
 
   while (codePointer.value !== code.value.length) {
     const instruction = code.value[codePointer.value];
@@ -250,21 +252,13 @@ onMounted(() => {
       <div class="row row-cols-auto g-2 align-items-end my-1">
         <div class="col">
           <button
-            class="btn btn-lg btn-outline-primary"
-            @click="reset();"
-          >
-            Reset
-          </button>
-        </div>
-        <div class="col">
-          <button
             class="btn btn-lg"
             :class="[
-              currentProcess !== null ? 'btn-danger' : 'btn-outline-danger'
+              currentProcess !== null ? 'btn-primary' : 'btn-outline-primary'
             ]"
-            @click="beginProcess(run);"
+            @click="beginProcess(runCode);"
           >
-            Run
+            Run Code
           </button>
         </div>
         <div class="col">
