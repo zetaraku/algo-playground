@@ -249,7 +249,7 @@ onMounted(() => {
 
     <!-- Buttons -->
     <div class="my-4">
-      <div class="row row-cols-auto g-2 align-items-end my-1">
+      <div class="row row-cols-auto g-2 align-items-center my-1">
         <div class="col">
           <button
             class="btn btn-lg btn-outline-primary"
@@ -278,6 +278,11 @@ onMounted(() => {
             NEXT &gt;
           </button>
         </div>
+      </div>
+      <div
+        id="advancedOptions"
+        class="row row-cols-auto g-2 align-items-end my-1"
+      >
         <div class="col">
           <label class="mb-1">
             delay (ms):
