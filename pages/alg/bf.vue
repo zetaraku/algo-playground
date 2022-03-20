@@ -252,9 +252,17 @@ onMounted(() => {
       <div class="row row-cols-auto g-2 align-items-end my-1">
         <div class="col">
           <button
+            class="btn btn-lg btn-outline-primary"
+            @click="reset();"
+          >
+            Reset
+          </button>
+        </div>
+        <div class="col">
+          <button
             class="btn btn-lg"
             :class="[
-              currentProcess !== null ? 'btn-primary' : 'btn-outline-primary'
+              currentProcess !== null ? 'btn-danger' : 'btn-outline-danger'
             ]"
             @click="beginProcess(runCode);"
           >
