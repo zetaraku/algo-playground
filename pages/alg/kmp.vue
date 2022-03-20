@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiWikipedia, mdiCodeTags } from '@mdi/js';
+import { mdiWikipedia, mdiCodeTags, mdiPlay, mdiPause } from '@mdi/js';
 
 definePageMeta({
   title: 'Knuth–Morris–Pratt algorithm',
@@ -39,7 +39,7 @@ const {
   beginProcess,
   endProcess,
   nextStep,
-  autoPlay,
+  toggleAutoplay,
   skipAll,
 } = useProcess();
 
@@ -58,7 +58,7 @@ function* computeLPSTable() {
   resetPointers();
   initLPSTable();
 
-  yield 'Begin Compute LPS Table (Click NEXT to Continue)';
+  yield 'Begin Compute LPS Table (Click NEXT or AUTOPLAY to Continue)';
 
   if (pattern.value.length === 0) {
     return 'Finished (You can Match Text now!)';
@@ -110,7 +110,7 @@ function* matchText() {
 
   resetPointers();
 
-  yield 'Begin Match Text (Click NEXT to Continue)';
+  yield 'Begin Match Text (Click NEXT or AUTO PLAY to Continue)';
 
   if (pattern.value.length === 0) {
     return 'Found at Index 0 (pattern is empty)';
@@ -279,10 +279,15 @@ onMounted(() => {
             :class="[
               autoPlaying ? 'btn-secondary' : 'btn-outline-secondary'
             ]"
-            :disabled="currentProcess === null || autoPlaying"
-            @click="autoPlay();"
+            :disabled="currentProcess === null"
+            @click="toggleAutoplay();"
           >
-            AUTO PLAY &gt;&gt;
+            AUTO PLAY
+            <SvgIcon
+              class="d-inline-block align-middle ml-1 mb-1"
+              type="mdi"
+              :path="autoPlaying ? mdiPlay : mdiPause"
+            />
           </button>
         </div>
         <div class="col">

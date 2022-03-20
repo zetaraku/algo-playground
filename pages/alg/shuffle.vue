@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiWikipedia } from '@mdi/js';
+import { mdiWikipedia, mdiPlay, mdiPause } from '@mdi/js';
 
 definePageMeta({
   title: 'Fisher–Yates shuffle',
@@ -20,7 +20,7 @@ const {
   beginProcess,
   endProcess,
   nextStep,
-  autoPlay,
+  toggleAutoplay,
   skipAll,
 } = useProcess();
 
@@ -46,7 +46,7 @@ function resetArray() {
 function* shuffleArray() {
   resetPointers();
 
-  yield 'Begin Shuffle Array (Click NEXT to Continue)';
+  yield 'Begin Shuffle Array (Click NEXT or AUTO PLAY to Continue)';
 
   while (iIndex.value !== array.value.length) {
     yield 'set j = i + rand() % (len(array) - i);';
@@ -167,10 +167,15 @@ onMounted(() => {
             :class="[
               autoPlaying ? 'btn-secondary' : 'btn-outline-secondary'
             ]"
-            :disabled="currentProcess === null || autoPlaying"
-            @click="autoPlay();"
+            :disabled="currentProcess === null"
+            @click="toggleAutoplay();"
           >
-            AUTO PLAY &gt;&gt;
+            AUTO PLAY
+            <SvgIcon
+              class="d-inline-block align-middle ml-1 mb-1"
+              type="mdi"
+              :path="autoPlaying ? mdiPlay : mdiPause"
+            />
           </button>
         </div>
         <div class="col">

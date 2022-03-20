@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiWikipedia } from '@mdi/js';
+import { mdiWikipedia, mdiPlay, mdiPause } from '@mdi/js';
 
 definePageMeta({
   title: 'Brainfuck interpreter',
@@ -33,7 +33,7 @@ const {
   beginProcess,
   endProcess,
   nextStep,
-  autoPlay,
+  toggleAutoplay,
   // skipAll,
 } = useProcess();
 
@@ -289,10 +289,15 @@ onMounted(() => {
             :class="[
               autoPlaying ? 'btn-secondary' : 'btn-outline-secondary'
             ]"
-            :disabled="currentProcess === null || autoPlaying"
-            @click="autoPlay();"
+            :disabled="currentProcess === null"
+            @click="toggleAutoplay();"
           >
-            AUTO PLAY &gt;&gt;
+            AUTO PLAY
+            <SvgIcon
+              class="d-inline-block align-middle ml-1 mb-1"
+              type="mdi"
+              :path="autoPlaying ? mdiPlay : mdiPause"
+            />
           </button>
         </div>
         <div class="col">
