@@ -13,16 +13,18 @@ const iIndex = ref<number>(0);
 const jIndex = ref<number | null>(null);
 
 const {
-  currentProcess,
-  infoMessage,
-  autoPlaying,
-  autoPlayDelay,
-  beginProcess,
-  endProcess,
+  currentMessage,
+  isProcedureRunning,
+  startProcedure,
   nextStep,
+  skipAllSteps,
+  endProcedure,
+} = useProcedure();
+const {
+  autoplayDelay,
+  isAutoplayActive,
   toggleAutoplay,
-  skipAll,
-} = useProcess();
+} = useAutoplay(nextStep);
 
 function resetPointers() {
   iIndex.value = 0;
@@ -39,14 +41,14 @@ function initArray() {
 }
 
 function resetArray() {
-  endProcess();
+  endProcedure();
   initArray();
   resetPointers();
 }
 function* shuffleArray() {
   resetPointers();
 
-  yield 'Begin Shuffle Array (Click NEXT or AUTO PLAY to Continue)';
+  yield 'Start Shuffle Array (Click NEXT or AUTO PLAY to Continue)';
 
   while (iIndex.value !== array.value.length) {
     yield 'set j = i + rand() % (len(array) - i);';
@@ -127,9 +129,9 @@ onMounted(() => {
           <button
             class="btn btn-lg"
             :class="[
-              currentProcess !== null ? 'btn-danger' : 'btn-outline-danger'
+              isProcedureRunning ? 'btn-danger' : 'btn-outline-danger'
             ]"
-            @click="beginProcess(shuffleArray);"
+            @click="startProcedure(shuffleArray());"
           >
             Shuffle Array
           </button>
@@ -137,7 +139,7 @@ onMounted(() => {
         <div class="col">
           <button
             class="btn btn-lg btn-outline-secondary"
-            :disabled="currentProcess === null"
+            :disabled="!isProcedureRunning"
             @click="nextStep();"
           >
             NEXT &gt;
@@ -153,7 +155,7 @@ onMounted(() => {
             delay (ms):
           </label>
           <input
-            v-model.number="autoPlayDelay"
+            v-model.number="autoplayDelay"
             type="number"
             min="0"
             step="50"
@@ -165,24 +167,24 @@ onMounted(() => {
           <button
             class="btn btn-lg"
             :class="[
-              autoPlaying ? 'btn-secondary' : 'btn-outline-secondary'
+              isAutoplayActive ? 'btn-secondary' : 'btn-outline-secondary'
             ]"
-            :disabled="currentProcess === null"
+            :disabled="!isProcedureRunning"
             @click="toggleAutoplay();"
           >
             AUTO PLAY
             <SvgIcon
               class="d-inline-block align-middle ml-1 mb-1"
               type="mdi"
-              :path="autoPlaying ? mdiPlay : mdiPause"
+              :path="isAutoplayActive ? mdiPlay : mdiPause"
             />
           </button>
         </div>
         <div class="col">
           <button
             class="btn btn-lg btn-outline-secondary"
-            :disabled="currentProcess === null"
-            @click="skipAll();"
+            :disabled="!isProcedureRunning"
+            @click="skipAllSteps();"
           >
             SKIP &gt;&gt;|
           </button>
@@ -193,7 +195,7 @@ onMounted(() => {
     <!-- Explanatory Message -->
     <blockquote class="blockquote">
       <p class="fs-3 font-monospace">
-        {{ infoMessage ?? 'READY' }}
+        {{ currentMessage ?? 'READY' }}
       </p>
     </blockquote>
 

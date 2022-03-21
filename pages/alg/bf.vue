@@ -26,16 +26,18 @@ const stdoutOutput = computed<string>(
 );
 
 const {
-  currentProcess,
-  infoMessage,
-  autoPlaying,
-  autoPlayDelay,
-  beginProcess,
-  endProcess,
+  currentMessage,
+  isProcedureRunning,
+  startProcedure,
   nextStep,
+  // skipAllSteps,
+  endProcedure,
+} = useProcedure();
+const {
+  autoplayDelay,
+  isAutoplayActive,
   toggleAutoplay,
-  // skipAll,
-} = useProcess();
+} = useAutoplay(nextStep);
 
 function resetPointers() {
   codePointer.value = 0;
@@ -59,13 +61,13 @@ function init() {
 }
 
 function reset() {
-  endProcess();
+  endProcedure();
   init();
 }
 function* runCode() {
   init();
 
-  yield 'Begin Run Code (Click NEXT or AUTOPLAY to Continue)';
+  yield 'Start Run Code (Click NEXT or AUTOPLAY to Continue)';
 
   while (codePointer.value !== code.value.length) {
     const instruction = code.value[codePointer.value];
@@ -262,9 +264,9 @@ onMounted(() => {
           <button
             class="btn btn-lg"
             :class="[
-              currentProcess !== null ? 'btn-danger' : 'btn-outline-danger'
+              isProcedureRunning ? 'btn-danger' : 'btn-outline-danger'
             ]"
-            @click="beginProcess(runCode);"
+            @click="startProcedure(runCode());"
           >
             Run Code
           </button>
@@ -272,7 +274,7 @@ onMounted(() => {
         <div class="col">
           <button
             class="btn btn-lg btn-outline-secondary"
-            :disabled="currentProcess === null"
+            :disabled="!isProcedureRunning"
             @click="nextStep();"
           >
             NEXT &gt;
@@ -288,7 +290,7 @@ onMounted(() => {
             delay (ms):
           </label>
           <input
-            v-model.number="autoPlayDelay"
+            v-model.number="autoplayDelay"
             type="number"
             min="0"
             step="50"
@@ -300,16 +302,16 @@ onMounted(() => {
           <button
             class="btn btn-lg"
             :class="[
-              autoPlaying ? 'btn-secondary' : 'btn-outline-secondary'
+              isAutoplayActive ? 'btn-secondary' : 'btn-outline-secondary'
             ]"
-            :disabled="currentProcess === null"
+            :disabled="!isProcedureRunning"
             @click="toggleAutoplay();"
           >
             AUTO PLAY
             <SvgIcon
               class="d-inline-block align-middle ml-1 mb-1"
               type="mdi"
-              :path="autoPlaying ? mdiPlay : mdiPause"
+              :path="isAutoplayActive ? mdiPlay : mdiPause"
             />
           </button>
         </div>
@@ -319,7 +321,7 @@ onMounted(() => {
     <!-- Explanatory Message -->
     <blockquote class="blockquote">
       <p class="fs-3 font-monospace">
-        {{ infoMessage ?? 'READY' }}
+        {{ currentMessage ?? 'READY' }}
       </p>
     </blockquote>
 

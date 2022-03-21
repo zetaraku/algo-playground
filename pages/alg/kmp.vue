@@ -32,16 +32,18 @@ const currentIndexesMatched = computed(() => {
 });
 
 const {
-  currentProcess,
-  infoMessage,
-  autoPlaying,
-  autoPlayDelay,
-  beginProcess,
-  endProcess,
+  currentMessage,
+  isProcedureRunning,
+  startProcedure,
   nextStep,
+  skipAllSteps,
+  endProcedure,
+} = useProcedure();
+const {
+  autoplayDelay,
+  isAutoplayActive,
   toggleAutoplay,
-  skipAll,
-} = useProcess();
+} = useAutoplay(nextStep);
 
 function resetPointers() {
   iIndex.value = 0;
@@ -58,7 +60,7 @@ function* computeLPSTable() {
   resetPointers();
   initLPSTable();
 
-  yield 'Begin Compute LPS Table (Click NEXT or AUTOPLAY to Continue)';
+  yield 'Start Compute LPS Table (Click NEXT or AUTOPLAY to Continue)';
 
   if (pattern.value.length === 0) {
     return 'Finished (You can Match Text now!)';
@@ -110,7 +112,7 @@ function* matchText() {
 
   resetPointers();
 
-  yield 'Begin Match Text (Click NEXT or AUTO PLAY to Continue)';
+  yield 'Start Match Text (Click NEXT or AUTO PLAY to Continue)';
 
   if (pattern.value.length === 0) {
     return 'Found at Index 0 (pattern is empty)';
@@ -152,13 +154,13 @@ function* matchText() {
 }
 
 watch(pattern, () => {
-  endProcess();
+  endProcedure();
   resetPointers();
   initLPSTable();
 });
 watch(text, () => {
   if (stage.value === 'matching') {
-    endProcess();
+    endProcedure();
     resetPointers();
   }
 });
@@ -225,10 +227,10 @@ onMounted(() => {
           <button
             class="btn btn-lg"
             :class="[
-              currentProcess !== null && stage === 'preprocessing' ?
+              isProcedureRunning && stage === 'preprocessing' ?
                 'btn-primary' : 'btn-outline-primary'
             ]"
-            @click="beginProcess(computeLPSTable);"
+            @click="startProcedure(computeLPSTable());"
           >
             Compute LPS Table
           </button>
@@ -237,11 +239,11 @@ onMounted(() => {
           <button
             class="btn btn-lg"
             :class="[
-              currentProcess !== null && stage === 'matching' ?
+              isProcedureRunning && stage === 'matching' ?
                 'btn-danger' : 'btn-outline-danger'
             ]"
             :disabled="!lpsFinished"
-            @click="beginProcess(matchText);"
+            @click="startProcedure(matchText());"
           >
             Match Text
           </button>
@@ -249,7 +251,7 @@ onMounted(() => {
         <div class="col">
           <button
             class="btn btn-lg btn-outline-secondary"
-            :disabled="currentProcess === null"
+            :disabled="!isProcedureRunning"
             @click="nextStep();"
           >
             NEXT &gt;
@@ -265,7 +267,7 @@ onMounted(() => {
             delay (ms):
           </label>
           <input
-            v-model.number="autoPlayDelay"
+            v-model.number="autoplayDelay"
             type="number"
             min="0"
             step="50"
@@ -277,24 +279,24 @@ onMounted(() => {
           <button
             class="btn btn-lg"
             :class="[
-              autoPlaying ? 'btn-secondary' : 'btn-outline-secondary'
+              isAutoplayActive ? 'btn-secondary' : 'btn-outline-secondary'
             ]"
-            :disabled="currentProcess === null"
+            :disabled="!isProcedureRunning"
             @click="toggleAutoplay();"
           >
             AUTO PLAY
             <SvgIcon
               class="d-inline-block align-middle ml-1 mb-1"
               type="mdi"
-              :path="autoPlaying ? mdiPlay : mdiPause"
+              :path="isAutoplayActive ? mdiPlay : mdiPause"
             />
           </button>
         </div>
         <div class="col">
           <button
             class="btn btn-lg btn-outline-secondary"
-            :disabled="currentProcess === null"
-            @click="skipAll();"
+            :disabled="!isProcedureRunning"
+            @click="skipAllSteps();"
           >
             SKIP &gt;&gt;|
           </button>
@@ -305,7 +307,7 @@ onMounted(() => {
     <!-- Explanatory Message -->
     <blockquote class="blockquote">
       <p class="fs-3 font-monospace">
-        {{ infoMessage ?? 'READY' }}
+        {{ currentMessage ?? 'READY' }}
       </p>
     </blockquote>
 
