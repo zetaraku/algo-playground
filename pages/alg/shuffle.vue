@@ -201,7 +201,7 @@ onMounted(() => {
 
     <!-- Array -->
     <div>
-      <label class="fs-5 font-monospace">array</label>
+      <label class="fs-5 font-monospace">array[{{ array.length }}]</label>
       <KeyedArrayView
         :data="array"
       >

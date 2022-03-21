@@ -313,7 +313,7 @@ onMounted(() => {
 
     <!-- Pattern String -->
     <div>
-      <label class="fs-5 font-monospace">pattern</label>
+      <label class="fs-5 font-monospace">pattern[{{ pattern.length }}]</label>
       <ArrayView
         :data="pattern"
       >
@@ -337,7 +337,7 @@ onMounted(() => {
 
     <!-- LPS Table -->
     <div>
-      <label class="fs-5 font-monospace">lps</label>
+      <label class="fs-5 font-monospace">lps[{{ lps.length }}]</label>
       <ArrayView
         :data="lps"
       >
@@ -356,7 +356,7 @@ onMounted(() => {
 
     <!-- Pattern String -->
     <div v-if="stage === 'preprocessing'">
-      <label class="fs-5 font-monospace">pattern</label>
+      <label class="fs-5 font-monospace">pattern[{{ pattern.length }}]</label>
       <ArrayView
         :data="pattern"
       >
@@ -381,7 +381,7 @@ onMounted(() => {
 
     <!-- Text String -->
     <div v-if="stage === 'matching'">
-      <label class="fs-5 font-monospace">text</label>
+      <label class="fs-5 font-monospace">text[{{ text.length }}]</label>
       <ArrayView
         :data="text"
       >
