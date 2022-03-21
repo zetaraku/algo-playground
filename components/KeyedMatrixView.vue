@@ -56,7 +56,7 @@ provide('colCount', computed(() => maxRowLength.value));
         <!-- right end indicator -->
         <ArrayViewEndBox
           v-for="(row, i) in data"
-          :key="i"
+          :key="`${i}-end`"
           class="position-absolute"
           :style="{
             top: `${4 * (15 - 1) * i}px`,
@@ -73,7 +73,7 @@ provide('colCount', computed(() => maxRowLength.value));
         <!-- bottom end indicator -->
         <ArrayViewEndBox
           v-for="(_, j) in (maxRowLength + 1)"
-          :key="j"
+          :key="`end-${j}`"
           class="position-absolute"
           :style="{
             top: `${4 * (15 - 1) * data.length}px`,
