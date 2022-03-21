@@ -158,7 +158,7 @@ onMounted(() => {
             min="0"
             step="50"
             class="form-control form-control-lg"
-            style="width: 10em;"
+            style="width: 8em;"
           >
         </div>
         <div class="col">
