@@ -15,22 +15,20 @@ const keyedData = computed(
 <template>
   <KeyedMatrixView :data="keyedData">
     <!-- array elements -->
-    <template #item="{ iIndex, jIndex, value, item }">
+    <template #item="{ index, value, item }">
       <slot
         name="item"
-        :i-index="iIndex"
-        :j-index="jIndex"
+        :index="index"
         :value="value"
         :item="item"
       />
     </template>
 
     <!-- end indicator -->
-    <template #end="{ iIndex, jIndex }">
+    <template #end="{ index }">
       <slot
         name="end"
-        :i-index="iIndex"
-        :j-index="jIndex"
+        :index="index"
       />
     </template>
 

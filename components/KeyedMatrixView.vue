@@ -35,19 +35,18 @@ provide('colCount', computed(() => maxRowLength.value));
       <ListTransitionGroup>
         <!-- array elements -->
         <ArrayViewValueBox
-          v-for="{ item, index: { i, j }} in flatData"
+          v-for="{ item, index } in flatData"
           :key="item.key"
           :value="item.value"
           class="position-absolute"
           :style="{
-            top: `${4 * (15 - 1) * i}px`,
-            left: `${4 * (15 - 1) * j}px`,
+            top: `${4 * (15 - 1) * index.i}px`,
+            left: `${4 * (15 - 1) * index.j}px`,
           }"
         >
           <slot
             name="item"
-            :i-index="i"
-            :j-index="j"
+            :index="index"
             :value="item.value"
             :item="item"
           />
@@ -65,8 +64,7 @@ provide('colCount', computed(() => maxRowLength.value));
         >
           <slot
             name="end"
-            :i-index="i"
-            :j-index="row.length"
+            :index="{ i, j: row.length }"
           />
         </ArrayViewEndBox>
 
@@ -82,8 +80,7 @@ provide('colCount', computed(() => maxRowLength.value));
         >
           <slot
             name="end"
-            :i-index="data.length"
-            :j-index="j"
+            :index="{ i: data.length, j }"
           />
         </ArrayViewEndBox>
       </ListTransitionGroup>

@@ -290,17 +290,17 @@ function randomize2dRangeMarker() {
       <MatrixView
         :data="arr2d"
       >
-        <template #item="{ iIndex, jIndex, value }">
+        <template #item="{ index, value }">
           <span class="position-absolute top-0 start-0 translate-middle-y text-muted fs-6">
-            {{ iIndex }},{{ jIndex }}
+            {{ index.i }},{{ index.j }}
           </span>
           <span>
             {{ value }}
           </span>
         </template>
-        <template #end="{ iIndex, jIndex }">
+        <template #end="{ index }">
           <span class="position-absolute top-0 start-0 translate-middle-y text-danger fs-6">
-            {{ iIndex }},{{ jIndex }}
+            {{ index.i }},{{ index.j }}
           </span>
           <span
             class="fs-5"
@@ -329,17 +329,17 @@ function randomize2dRangeMarker() {
       <KeyedMatrixView
         :data="keyedArr2d"
       >
-        <template #item="{ iIndex, jIndex, value }">
+        <template #item="{ index, value }">
           <span class="position-absolute top-0 start-0 translate-middle-y text-muted fs-6">
-            {{ iIndex }},{{ jIndex }}
+            {{ index.i }},{{ index.j }}
           </span>
           <span>
             {{ value }}
           </span>
         </template>
-        <template #end="{ iIndex, jIndex }">
+        <template #end="{ index }">
           <span class="position-absolute top-0 start-0 translate-middle-y text-danger fs-6">
-            {{ iIndex }},{{ jIndex }}
+            {{ index.i }},{{ index.j }}
           </span>
           <span
             class="fs-5"
