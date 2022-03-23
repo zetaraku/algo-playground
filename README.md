@@ -14,6 +14,7 @@ This project is built with [Nuxt 3](https://v3.nuxtjs.org) and [Bootstrap 5](htt
 
 - [Knuth–Morris–Pratt algorithm](https://algo-playground.zetaraku.dev/alg/kmp) 📑🔍
 - [Fisher–Yates shuffle](https://algo-playground.zetaraku.dev/alg/shuffle) 🗃️🌪️
+- [Longest common subsequence](https://algo-playground.zetaraku.dev/alg/lcs) 📑📑
 - [Brainfuck interpreter](https://algo-playground.zetaraku.dev/alg/bf) 👨‍💻🤪
 
 ## License

@@ -12,6 +12,12 @@ export const algCategories = [
     ],
   },
   {
+    name: 'Dynamic Programming',
+    pages: [
+      { name: 'Longest common subsequence', to: '/alg/lcs' },
+    ],
+  },
+  {
     name: 'Misc',
     pages: [
       { name: 'Brainfuck interpreter', to: '/alg/bf' },
