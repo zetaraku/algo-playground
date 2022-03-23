@@ -160,7 +160,9 @@ onMounted(() => {
 
     <!-- ArrayView -->
     <div>
-      <label class="fs-5 font-monospace">input[{{ input.length }}]</label>
+      <label class="fs-5 font-monospace">
+        input[{{ input.length }}]
+      </label>
       <ArrayView :data="input">
         <ArrayViewIndexMarker
           :index="iIndex"
