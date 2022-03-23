@@ -194,7 +194,10 @@ onMounted(() => {
 
     <!-- Explanatory Message -->
     <blockquote class="blockquote">
-      <p class="fs-3 font-monospace">
+      <p
+        class="fs-3 font-monospace"
+        style="white-space: pre;"
+      >
         {{ currentMessage ?? 'READY' }}
       </p>
     </blockquote>
