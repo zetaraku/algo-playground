@@ -1,15 +1,17 @@
 .marker-color-lime {
-  color: rgba(163, 230, 53, 1.0);
-  border-color: rgba(163, 230, 53, 1.0);
-  background-color: rgba(163, 230, 53, 0.5);
+  color: rgb(163 230 53 / 100%);
+  border-color: rgb(163 230 53 / 100%);
+  background-color: rgb(163 230 53 / 50%);
 }
+
 .marker-color-blue {
-  color: rgba(59, 130, 246, 1.0);
-  border-color: rgba(59, 130, 246, 1.0);
-  background-color: rgba(59, 130, 246, 0.5);
+  color: rgb(59 130 246 / 100%);
+  border-color: rgb(59 130 246 / 100%);
+  background-color: rgb(59 130 246 / 50%);
 }
+
 .marker-color-red {
-  color: rgba(239, 68, 68, 1.0);
-  border-color: rgba(239, 68, 68, 1.0);
-  background-color: rgba(239, 68, 68, 0.5);
+  color: rgb(239 68 68 / 100%);
+  border-color: rgb(239 68 68 / 100%);
+  background-color: rgb(239 68 68 / 50%);
 }
