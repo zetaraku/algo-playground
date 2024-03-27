@@ -190,7 +190,7 @@ onMounted(() => {
         />Wikipedia</a>
         <a
           class="me-1"
-          href="https://github.com/zetaraku/leetcode/blob/master/28-implement-strstr.cpp"
+          href="https://github.com/zetaraku/leetcode/blob/master/code/easy/28-find-the-index-of-the-first-occurrence-in-a-string.cpp"
           target="_blank"
         ><SvgIcon
           class="d-inline-block align-middle me-1"
